@@ -1,0 +1,282 @@
+import Subheading from '../../components/Subheading/Subheading.tsx';
+import StepTabsVariants from '../../components/StepTabsVariants/StepTabsVariants.tsx';
+import StepTabs from '../../components/StepTabs/StepTabs.tsx';
+import HTMLFreestyleOverview from '../../code_sections/comments/freestyle/HTMLFreestyleOverview.tsx';
+import ReactFreestyleOverview from '../../code_sections/comments/freestyle/ReactFreestyleOverview.tsx';
+import HTMLPopoverOverview from '../../code_sections/comments/popover/HTMLPopoverOverview.tsx';
+import ReactPopoverOverview from '../../code_sections/comments/popover/ReactPopoverOverview.tsx';
+import HTMLStreamOverview from '../../code_sections/comments/stream/HTMLStreamOverview.tsx';
+import ReactStreamOverview from '../../code_sections/comments/stream/ReactStreamOverview.tsx';
+import HTMLTextOverview from '../../code_sections/comments/text/HTMLTextOverview.tsx';
+import ReactTextOverview from '../../code_sections/comments/text/ReactTextOverview.tsx';
+import HTMLAllCustom from '../../code_sections/comments/HTMLAllCustom.tsx';
+import ReactAllCustom from '../../code_sections/comments/ReactAllCustom.tsx';
+import ReactPin from '../../code_sections/comments/slots/ReactPin.tsx';
+import HTMLPin from '../../code_sections/comments/slots/HTMLPin.tsx';
+import ReactBubble from '../../code_sections/comments/slots/ReactBubble.tsx';
+import HTMLBubble from '../../code_sections/comments/slots/HTMLBubble.tsx';
+import ReactTool from '../../code_sections/comments/slots/ReactTool.tsx';
+import HTMLTool from '../../code_sections/comments/slots/HTMLTool.tsx';
+import PinPart from '../../code_sections/comments/parts/PinPart.tsx';
+import BubblePart from '../../code_sections/comments/parts/BubblePart.tsx';
+import ToolPart from '../../code_sections/comments/parts/ToolPart.tsx';
+import ToolVariables from '../../code_sections/comments/variables/ToolVariables.tsx';
+import PinVariables from '../../code_sections/comments/variables/PinVariables.tsx';
+import BubbleVariables from '../../code_sections/comments/variables/BubbleVariables.tsx';
+import HTMLCustomStatus from '../../code_sections/comments/filters/HTMLCustomStatus.tsx';
+import ReactCustomStatus from '../../code_sections/comments/filters/ReactCustomStatus.tsx';
+import HTMLCustomPriority from '../../code_sections/comments/filters/HTMLCustomPriority.tsx';
+import ReactCustomPriority from '../../code_sections/comments/filters/ReactCustomPriority.tsx';
+import HTMLCustomCategory from '../../code_sections/comments/filters/HTMLCustomCategory.tsx';
+import ReactCustomCategory from '../../code_sections/comments/filters/ReactCustomCategory.tsx';
+import HTMLInboxOverview from '../../code_sections/comments/inbox/HTMLInboxOverview.tsx';
+import ReactInboxOverview from '../../code_sections/comments/inbox/ReactInboxOverview.tsx';
+import CommentsDemo from '../../components/CommentsDemo/CommentsDemo.tsx';
+import HTMLGetComments from '../../code_sections/comments/HTMLGetComments.tsx';
+import ReactGetComments from '../../code_sections/comments/ReactGetComments.tsx';
+
+import BubbleVariablesRef from '../../reference/comment-pin/variables/BubbleVariables.mdx';
+import PinVariablesRef from '../../reference/comment-pin/variables/PinVariables.mdx';
+import ToolVariablesRef from '../../reference/comment-pin/variables/ToolVariables.mdx';
+
+import BubblePartsRef from '../../reference/comment-pin/parts/BubbleParts.mdx';
+import PinPartsRef from '../../reference/comment-pin/parts/PinParts.mdx';
+import ToolPartsRef from '../../reference/comment-pin/parts/ToolParts.mdx';
+
+import { NextSeo } from 'next-seo';
+
+# Comments [#comments]
+
+<NextSeo 
+  title="Velt Docs - Comments"
+  description="Comment annotaion documentation page for the Velt SDK"
+/>
+
+<Subheading>Your users can add comments in context to ask questions, leave feedback, report bugs etc. We handle all complexity to ensure the comments are robust against content changes. We support many types of comment UX patterns as illustrated below. </Subheading>
+
+export function Test() {
+
+  const options = {
+    'All': {
+      'Freestyle': <CommentsDemo demoUrl="comments" />,
+      'Popover': <CommentsDemo demoUrl="comments-popover" />,
+      'Stream': <CommentsDemo demoUrl="comments-stream" />,
+      'Text': <CommentsDemo demoUrl="comments-text" />,
+      'Inbox': <CommentsDemo demoUrl="comments-inbox" />
+    }
+  };
+
+  return (
+    <StepTabsVariants
+      sectionId=""
+      options={options}
+    />
+  );
+}
+
+<Test />
+
+# Steps [#steps]
+
+export function CommentOverviewSteps() {
+
+  const options = {
+    'React': {
+      'Freestyle': <ReactFreestyleOverview sectionId="steps" />,
+      'Popover': <ReactPopoverOverview sectionId="steps" />,
+      'Stream': <ReactStreamOverview sectionId="steps" />,
+      'Text': <ReactTextOverview sectionId="steps" />,
+      'Inbox': <ReactInboxOverview sectionId="steps" />,
+    },
+    'Next.js': {
+      'Freestyle': <ReactFreestyleOverview sectionId="steps" />,
+      'Popover': <ReactPopoverOverview sectionId="steps" />,
+      'Stream': <ReactStreamOverview sectionId="steps" />,
+      'Text': <ReactTextOverview sectionId="steps" />,
+      'Inbox': <ReactInboxOverview sectionId="steps" />,
+    },
+    'HTML': {
+      'Freestyle': <HTMLFreestyleOverview sectionId="steps" />,
+      'Popover': <HTMLPopoverOverview sectionId="steps" />,
+      'Stream': <HTMLStreamOverview sectionId="steps" />,
+      'Text': <HTMLTextOverview sectionId="steps" />,
+      'Inbox': <HTMLInboxOverview sectionId="steps" />,
+    }
+  };
+
+  return (
+    <StepTabsVariants
+      sectionId="steps"
+      options={options}
+    />
+  );
+
+}
+
+<CommentOverviewSteps />
+
+# Customize Behavior [#customize-behavior]
+
+export function CommentCustomizeSteps() {
+
+  const frontendOptions = {
+    'React': <ReactAllCustom sectionId="customize-behavior" />,
+    'Next.js': <ReactAllCustom sectionId="customize-behavior" />,
+    // 'HTML': <HTMLAllCustom sectionId="customize-behavior" />
+  };
+
+  return (
+    <StepTabs
+      frontendOptions={frontendOptions}
+    />
+  );
+}
+
+<CommentCustomizeSteps />
+
+{/* ## Custom Filters [#custom-filters]
+
+export function CustomFilterSteps() {
+
+  const options = {
+    'React': {
+      'Status': <ReactCustomStatus sectionId="customize-filters" />,
+      'Priority': <ReactCustomPriority sectionId="customize-filters" />,
+      'Category': <ReactCustomCategory sectionId="customize-filters" />
+    },
+    'Next.js': {
+      'Status': <ReactCustomStatus sectionId="customize-filters" />,
+      'Priority': <ReactCustomPriority sectionId="customize-filters" />,
+      'Category': <ReactCustomCategory sectionId="customize-filters" />
+    },
+    'HTML': {
+      'Status': <HTMLCustomStatus sectionId="customize-filters" />,
+      'Priority': <HTMLCustomPriority sectionId="customize-filters" />,
+      'Category': <HTMLCustomCategory sectionId="customize-filters" />
+    }
+  };
+
+  return (
+    <StepTabsVariants
+      sectionId="customize-filters"
+      options={options}
+    />
+  );
+}
+
+<CustomFilterSteps /> */}
+
+# Customize UI [#customize-ui]
+
+## 1. Slots
+
+export function CommentSlotSteps() {
+
+  const options = {
+    'React': {
+      'Pin': <ReactPin sectionId="customize-ui" />,
+      'Bubble': <ReactBubble sectionId="customize-ui" />,
+      'Tool': <ReactTool sectionId="customize-ui" />
+    },
+    'Next.js': {
+      'Pin': <ReactPin sectionId="customize-ui" />,
+      'Bubble': <ReactBubble sectionId="customize-ui" />,
+      'Tool': <ReactTool sectionId="customize-ui" />
+    },
+    'HTML': {
+      'Pin': <HTMLPin sectionId="customize-ui" />,
+      'Bubble': <HTMLBubble sectionId="customize-ui" />,
+      'Tool': <HTMLTool sectionId="customize-ui" />
+    }
+  };
+
+  return (
+    <StepTabsVariants
+      sectionId="customize-ui"
+      options={options}
+    />
+  );
+}
+
+<CommentSlotSteps />
+
+## 2. Parts [#customize-parts]
+
+export function CommentPartSteps() {
+
+  const options = {
+    'All': {
+      'Pin': <PinPart sectionId="customize-parts" />,
+      'Bubble': <BubblePart sectionId="customize-parts" />,
+      'Tool': <ToolPart sectionId="customize-parts" />
+    }
+  };
+
+  const referenceOptions = {
+    'All': {
+      'Pin': <PinPartsRef />,
+      'Bubble': <BubblePartsRef />,
+      'Tool': <ToolPartsRef />
+    }
+  };
+
+  return (
+    <StepTabsVariants 
+      sectionId="customize-parts"
+      options={options}
+      referenceOptions={referenceOptions}
+    />
+  );
+}
+
+<CommentPartSteps />
+
+## 3. Variables [#customize-vars]
+
+export function CommentVariableSteps() {
+
+  const options = {
+    'All': {
+      'Pin': <PinVariables sectionId="customize-vars" />,
+      'Bubble': <BubbleVariables sectionId="customize-vars" />,
+      'Tool': <ToolVariables sectionId="customize-vars" />
+    }
+  };
+
+  const referenceOptions = {
+    'All': {
+      'Pin': <PinVariablesRef />,
+      'Bubble': <BubbleVariablesRef />,
+      'Tool': <ToolVariablesRef />
+    }
+  };
+
+  return (
+    <StepTabsVariants
+      sectionId="customize-vars"
+      options={options}
+      referenceOptions={referenceOptions}
+    />
+  );
+}
+
+<CommentVariableSteps />
+
+## 4. Build your own UI [#get-comments]
+
+export function CommentCustomUISteps() {
+
+  const frontendOptions = {
+    'React': <ReactGetComments sectionId="get-comments" />,
+    'Next.js': <ReactGetComments sectionId="get-comments" />,
+    // 'HTML': <HTMLGetComments sectionId="get-comments" />
+  };
+
+  return (
+    <StepTabs
+      frontendOptions={frontendOptions}
+    />
+  );
+}
+
+<CommentCustomUISteps />

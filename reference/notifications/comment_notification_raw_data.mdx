@@ -1,0 +1,5 @@
+| Field | Type | Description |
+| --- | --- | --- |
+' `commentAnnotation` | `CommentAnnotation` | The target `CommentAnnotation` object on which the event happened. |
+| `targetComment` | `Comment` | The target `Comment` object on which the event happened. This field will not be present if the event was at `CommentAnnotation` level. Eg: `deleted` the entire comment annotation, `resolved` comment, `approved` comment. |
+| `actionType` | `string` | This can have 5 values: `added`, `updated`,  `deleted`, `resolved`, `approved` <br/> - `added`: when a new `Comment` is added. <br/> - `updated`: when an existing `Comment` is updated. <br/> - `deleted`: when an existing `Comment` or the entire `CommentAnnotation` is deleted. If `CommentAnnotation` is deleted then `commentText` field will be empty. <br/> - `resolved`: when the`CommentAnnotation` is resolved. `commentText` field will be empty in this case. <br/> - `approved`: when the`CommentAnnotation` is approved by the moderator. This is only applicable if you have turned on Moderator Mode. `commentText` field will be empty in this case. |

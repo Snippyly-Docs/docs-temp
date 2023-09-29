@@ -1,0 +1,69 @@
+.stepContainer {
+
+  .title {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+
+    .stepNumber {
+      width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      background-color: #000;
+      background: var(--step-circle-color);
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+
+    h1.titleText {
+      font-size: 1.2rem !important;
+      font-weight: 600 !important;
+      color: var(--headline-color);
+      margin: 0;
+    }
+
+    @media screen and (max-width: 992px) {
+      h1.titleText {
+        font-size: 2.5vmin !important;
+      }
+    }
+  }
+
+  .description {
+
+    font-weight: 300;
+    padding: 1.2rem;
+    cursor: pointer;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+
+    strong {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .description {
+      font-size: 2vmin;
+    }
+  }
+
+  .active {
+    background-color: var(--step-highlight-color) !important;
+    box-shadow: inset 0 1px var(--border-color) !important;
+  }
+  
+
+}
+
+.stepContainer + .stepContainer {
+  margin-top: 1rem;
+}

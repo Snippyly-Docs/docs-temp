@@ -1,0 +1,122 @@
+import { Presence } from '@snippyly/snippyly-demo-component'
+import SplitPane from '../../../components/SplitPane'
+import { documentID } from '../../../components/documentID'
+export const presenceDocumentId = documentID("presence");
+import { Callout } from 'nextra-theme-docs';
+import { useState } from 'react';
+
+# Presence
+
+_Display which users are currently in the same Location._
+
+---
+
+<SplitPane>
+  <Presence user={"Rachel"} documentId={presenceDocumentId}/>
+  <Presence user={"Ross"} documentId={presenceDocumentId}/>
+</SplitPane>
+
+## 1: Add the component
+
+```html copy
+<snippyly-presence></snippyly-presence>
+```
+
+<Callout type="info">Insert the component anywhere in your application!</Callout>
+
+## 2: Customization
+
+### Style the component
+
+Simply target the component to give it a style.
+
+**Example**
+
+```html copy
+<snippyly-presence></snippyly-presence>
+```
+
+```css copy
+snippyly-presence {
+  /* Custom CSS */
+}
+```
+
+We've provided CSS parts for you to target each individual part at a more granular level.
+
+**Example**
+
+```css copy
+snippyly-presence::part(container) {
+  /* Custom CSS */
+}
+
+snippyly-presence::part(user-avatar) {
+  /* Custom CSS */
+}
+```
+
+<Callout type="info">Get a full list of CSS parts [here]()!</Callout>
+
+### Set max avatars
+
+**Default:** Maximum 5 user avatars will be visible in `<snippyly-presence>`. If there are more than 5 online users, it will show `+ remaining_number` at the end.
+
+You can configure this by setting `max-users="count"` attribute in `<snippyly-presence>` component.
+
+**Example**
+
+```html copy
+<snippyly-presence max-users="2"></snippyly-presence>
+```
+
+### Add presence for locations
+
+There are some apps where there are locations within the main document eg: Google Slides, where each slide represents a different location on the document.
+
+By default, `<snippyly-presence>` will show all online users in the given document.  
+However, if you also want to show who is online at a child document level, then you can add another `<snippyly-presence>` in your child document and pass a `location` object in the `location` attribute of `<snippyly-presence>` tag.
+
+For this feature, you need to first call `setLocation(location)` in the child document and pass the same `location` object to `<snippyly-presence>` as `string` using `JSON.stringify(location)`.
+
+**Example**
+
+```html copy
+<snippyly-presence location="location"></snippyly-presence>
+```
+
+### Set inactivity time
+
+By default if the user is inactive for `>5 minutes`, we mark them offline. By inactive we mean they haven't moved their mouse or haven't made any keyboard event. You can configure this default threshold as follows:
+
+**Example**
+
+```js
+const presenceElement = client.getPresenceElement();
+presenceElement.setInactivityTime(60000); // Pass time in milliseconds
+```
+
+You can also set the inactivity time easily by passing it as a property:
+
+```html
+<snippyly-presence inactivity-time="60000"></snippyly-presence>
+```
+
+### Enable follow-along mode
+
+We provide a convenient "follow-along" mode that allows you to follow along with other users by clicking on their user avatar in the presence container. You can enable this feature by:
+
+**Example**
+
+```js
+const presenceElement = client.getPresenceElement();
+presenceElement.enableFollowAlongMode();
+```
+
+### Dark mode
+
+To set dark mode on only the Presence component, just add the `dark` attribute.
+
+```html
+<snippyly-presence dark></snippyly-presence>
+```

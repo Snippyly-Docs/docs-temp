@@ -1,0 +1,97 @@
+import { Callout } from 'nextra-theme-docs'
+
+# Advanced usage
+
+_More advanced commenting features._
+
+---
+
+## Disable floating comments
+
+By default, when users hover or click on comment pin or highlighted text, floating comment dialog box appears. If you want to disable floating comment dialog box, you can call this method with parameter `true`. To re-enable you can call this method with parameter `false`.
+
+**Example**
+
+```js copy
+const commentElement = client.getCommentElement();
+commentElement.disableFloatingComments(true);
+```
+
+## Enable moderator mode
+
+By default, when a user adds a comment it is visible to all authenticated users on the same `Document`.  
+Moderator mode makes visibility of all comments private to the only `admin` users and the comment author. Admin users will see an `approve` button to approve the comment.
+
+![](https://files.readme.io/d307f35-Snippyly_SDK_Moderator_Mode.gif "Velt SDK Moderator Mode.gif")
+
+**Note:**
+
+- You can set some users as `admin` by setting the `isAdmin` property in the [`User`](ref:user-data) object, during the [`identify()`](ref:snippyly-client#identify) call
+- Admin users can approve or delete any comments.
+- Once a comment is approved it will be visible to all authenticated users on the same `Document`.
+- To disable this mode, call this method with parameter `false`.
+
+**Example**
+
+```js copy
+const commentElement = client.getCommentElement();
+commentElement.enableModeratorMode(true);
+```
+
+## Delete an entire comment thread using custom trigger
+
+To delete a comment, the end-user needs to click on the the comment pin or the commented text and press `Backspace` button or `Delete` button.
+
+If you want to delete the comment thread through a custom shortcut or trigger, you can use the `deleteComment()` method as follows:
+
+**Example**
+
+```js copy
+const commentElement = client.getCommentElement();
+commentElement.deleteComment();
+```
+
+## Show sign in button when user is anonymous or signed out
+
+You can now show a sign in call to action to users in the comment dialog box when they are signed out or are logged in anonymously. When the user clicks on the sign in button, we will publish an event called `signIn` so that you listen to it and hook it with your sign in method. Here is an example:
+
+**Example**
+
+First enable the sign in button:
+
+```js copy
+const commentElement = client.getCommentElement();
+commentElement.enableSignInButton(true);
+```
+
+Then, listen to the button click event:
+
+```js copy
+const element = document.querySelector('SnippylyComments');
+element?.addEventListener('signIn', () => {
+  // Your login here
+});
+```
+
+<Callout type="info">After the user successfully logs in with you, pass the user object to the Velt `identify()` method</Callout>
+
+## Enable attachments
+
+Once you enable this feature, your users can attach files for team members to refer directly in context.
+
+- We will generate a preview wherever possible.
+- Users can download or delete an attachment.
+- Users can attach multiple files at once.
+
+### Supported file types
+
+| Type  | File extensions                            | Max Size      |
+| :---- | :----------------------------------------- | :------------ |
+| Image | .png, .jpg, .gif (static & animated), .svg | 2 MB per file |
+
+**Example**
+
+```js copy
+const commentElement = client.getCommentElement();
+commentElement.enableAttachment(true);
+```

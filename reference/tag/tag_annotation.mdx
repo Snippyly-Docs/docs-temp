@@ -1,0 +1,15 @@
+| Field | Type | Description |
+| --- | --- | --- |
+| `annotationId` | `string` | Unique identifier for the tag pin annotation. Auto generated. |
+| `from` | `User` | The user who created this tag pin annotation. |
+| `to` | `User[]` | List of users that were tagged. |
+| `color` | `string \| undefined` | Color used for the tag pin annotation. |
+| `resolved` | `boolean \| undefined` | Whether the tag annotation is marked resolved. |
+| `lastUpdated` | `any \| undefined` | Timestamp when the tag annotation was last updated. Auto generated. |
+| `positionX` | `number \| undefined` | Tag annotation's position on the X axis. Auto generated. |
+| `positionY` | `number \| undefined` | Tag annotation's position on the Y axis. Auto generated. |
+| `location` | `Location \| null \| undefined` | Set location to identify user on sub document. |
+| `type` | `string \| undefined` | Type of annotation. Defaults to 'tag'. |
+| `approved` | `boolean \| undefined` | Approved status of the annotation. |
+| `annotationIndex` | `number \| undefined` | To maintain index of current annotation in available list of annotations. |
+| `pageInfo` | `PageInfo \| undefined` | Page information. |

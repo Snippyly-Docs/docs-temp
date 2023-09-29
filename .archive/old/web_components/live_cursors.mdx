@@ -1,0 +1,92 @@
+# Live Cursors
+
+_See who's collaborating with you in realtime._
+
+---
+
+import { Cursor } from '@snippyly/snippyly-demo-component'
+import { documentID } from '../../../components/documentID'
+import SplitPane from '../../../components/SplitPane';
+import { Callout } from 'nextra-theme-docs';
+
+export const cursorDocumentId = documentID("cursor");
+
+<SplitPane>
+  <Cursor type={1} documentId={cursorDocumentId}/>
+  <Cursor type={0} documentId={cursorDocumentId}/>
+</SplitPane>
+
+## 1: Add the component
+
+```html copy
+<snippyly-cursor></snippyly-cursor>
+```
+
+<Callout type="warning">
+  The `snippyly-cursor` component needs to be in the root App component of your React app
+</Callout>
+
+## 2: Customization
+
+### Style the component
+
+Simply add a CSS class to the component to give it a style.
+
+**Example**
+
+```html copy
+<snippyly-cursor class="my-custom-css"></snippyly-cursor>
+```
+
+```css copy
+snippyly-cursor.my-custom-css {
+  /* Custom CSS */
+}
+```
+
+You can also pass your own CSS class to the inner DOM element of the cursor label using the property **`label-class`**.
+
+**Example**
+
+```html copy
+<snippyly-cursor label-class="my-custom-label-class"></snippyly-cursor>
+```
+
+```css copy
+snippyly-cursor .my-custom-label-class {
+  /* Custom CSS */
+}
+```
+
+### Set inactivity time
+
+By default if the user is inactive for `>2 minutes`, we mark them offline. By inactive we mean they haven't moved their mouse or haven't made any keyboard event. You can configure this default threshold as follows:
+
+**Example**
+```js copy
+const cursorElement = Velt.getCursorElement();
+cursorElement.setInactivityTime(60000); // Pass time in milliseconds
+```
+
+### Restrict cursors to specific DOM elements
+
+By default, your end-users can see other users' cursors on **any** DOM element when they are on the same page (`documentID`). In some scenarios you may want to restrict the cursor viability to only certain areas of your UI. For eg: if your app has a canvas and a bunch of tool panels, you can now restrict cursors to only the canvas. There is not a lot of value in showing users' cursors on the tools panel.
+
+You can restrict cursors to specific DOM elements by providing a list of element ids where the feature should be allowed. Note if you pass an empty array, users can see each others' cursors on the entire DOM.
+
+**Example**
+
+```js copy
+const cursorElement = Velt.getCursorElement();
+cursorElement.allowedElementIds(['elementId1', 'elementId2']);
+```
+
+### Enable avatar mode
+
+By default, we show the User's name in the cursor label, you can replace it with the User's avatar instead. You can do so by setting `avatar-mode="true"` attribute on the `<snippyly-cursor>` element.
+
+**Example**
+
+```html copy
+<snippyly-cursor avatar-mode="true"></snippyly-cursor>
+```

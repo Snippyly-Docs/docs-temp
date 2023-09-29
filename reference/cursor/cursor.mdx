@@ -1,0 +1,15 @@
+| Field | Type | Description |
+| --- | --- | --- |
+| `userId` | `string` | Unique user identifier that you use to identify your user |
+| `name` | `string \| undefined` | Your user's full name. Default: Random avatar name |
+| `email` | `string \| undefined` | Your user's email |
+| `photoUrl` | `string \| undefined` | Your user's display picture URL. Default: Random avatar image |
+| `comment` | `string \| undefined` | Short comment that user can add to their live cursor |
+| `positionX` | `number \| undefined` | User’s live mouse position on the X axis. Auto generated |
+| `positionY` | `number \| undefined` | User’s live mouse position on the Y axis. Auto generated |
+| `onlineStatus` | `string` | Auto updated when the user has their tab focused, inactive, or closed. Values: active, inactive or offline |
+| `userSnippylyId` | `string \| undefined` | Auto generated unique user id that is linked with your app's user ID |
+| `color` | `string \| undefined` | A random color is assigned to the user for the current session |
+| `timestamp` | `any` | Server Timestamp |
+| `type` | `string \| undefined` | User type |
+| `location` | `Location \| null \| undefined` | Set location to identify user on sub document |

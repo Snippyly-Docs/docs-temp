@@ -1,0 +1,47 @@
+# Contacts
+
+_How to group users together for tagging purposes._
+
+---
+
+## 1: Group ID
+
+When you give a `groupId` to a user by calling the `identify` or `updateUser` method, you are placing that user within a group.
+
+- All users in the same group will be able to see each other when tagging, assigning, commenting, etc.
+- If you change a user's group ID, the SDK will preserve the contacts they had previously
+
+**Example**
+
+```js copy
+client.identify({
+  userId: "some_user_uuid",
+  name: "Peter Parker",
+  email: "peter@superheroes.com",
+  groupId: 1
+});
+```
+
+## 2: Contacts list
+
+You can also pass a `contacts` array of [UserContact]() objects when calling `identify` or `updateUser`. This list is a _private_ list of contacts that are specific to that user, and remain unaffected by any changes to the **Group ID**.
+
+**Example**
+
+```js copy {5-10}
+client.identify({
+  userId: "some_user_uuid",
+  name: "Peter Parker",
+  email: "peter@superheroes.com",
+  contacts: [
+    {
+      name: "Mary Jane",
+      email: "mjane@spidertalent.com"
+    }
+  ]
+});
+```
+
+## 3: Removing contacts
+
+**TODO**

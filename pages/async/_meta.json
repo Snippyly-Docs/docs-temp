@@ -1,0 +1,22 @@
+{
+  "comments": {
+    "title": "Comments",
+    "firstHeader": "Overview"
+  },
+  "comments_sidebar": {
+    "title": "Comments Sidebar",
+    "firstHeader": "Overview"
+  },
+  "system_comments": {
+    "title": "System Comments",
+    "firstHeader": "Overview"
+  },
+  "arrows": {
+    "title": "Arrows",
+    "firstHeader": "Overview"
+  },
+  "recorder": {
+    "title": "Recorder",
+    "firstHeader": "Overview"
+  }
+}

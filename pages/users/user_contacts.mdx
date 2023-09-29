@@ -1,0 +1,50 @@
+import StepTabs from '../../components/StepTabs/StepTabs.tsx';
+import ReactAuthContactList from '../../code_sections/installation/react/ReactAuthContactList.tsx';
+
+import { NextSeo } from 'next-seo';
+
+
+<NextSeo 
+  title="Velt Docs - User Contact List"
+  description="Add User Contact List to your app."
+/>
+
+
+# Enable @ mentions & user tagging [#user-contact-list]
+For some features like Comments, your users should be able to @mention or tag other users. <br />
+You can enable autocomplete and show a contacts dropdown by using this feature.
+<br />
+export function AuthContactListSteps() {
+  const frontendOptions = {
+    'React': <ReactAuthContactList sectionId="user-contact-list" />,
+    'Next.js': <ReactAuthContactList sectionId="user-contact-list" />,
+    // 'HTML': <ReactAuthContactList sectionId="user-contact-list" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<AuthContactListSteps />
+
+
+
+{/* ## Initialize Location (optional) [#location]
+A location is like a room in the virtual house. <br />
+This represents a space inside the main `document` that you set in the previous step. <br />
+Depending on the app, this could represent slides, sections, popups, versions, frames (in video editor), data points on maps/charts etc.
+<br />
+export function InitDocumentLocationSteps() {
+  const frontendOptions = {
+    'React': <ReactLocation sectionId="initialize-location" />,
+    'Next.js': <ReactLocation sectionId="initialize-location" />,
+    'HTML': <ReactLocation sectionId="initialize-location" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<InitDocumentLocationSteps /> */}

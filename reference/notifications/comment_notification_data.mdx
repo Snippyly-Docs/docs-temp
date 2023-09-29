@@ -1,0 +1,9 @@
+| Field | Type | Description |
+| --- | --- | --- |
+' `commentText` | `string` | Comment text for the added, updated or deleted `Comment`. This is empty when entire `CommentAnnotation` is deleted. |
+| `from` | `User` | The user who added, updated or deleted the target `Comment`. |
+| `toContactsTagged` | `UserContact[]` | List of user contacts that are tagged to the target `Comment`. |
+| `toContactsUpdated` | `UserContact[]` | List of user contacts that are on the target `CommentAnnotation`. This excludes all the user contacts that are on the target `Comment`. |
+| `pageTitle` | `string` | Title of the page on which the target `CommentAnnotation` is present. |
+| `pageUrl` | `string` | Full URL of the page on which the target `CommentAnnotation` is present. |
+| `actionType` | `string` | This can have 5 values: `added`, `updated`, `deleted`, `resolved`, `approved`<br/> - `added`: when a new `Comment` is added.<br/> - `updated`: when an existing `Comment` is updated.<br/> - `deleted`: when an existing `Comment` or the entire `CommentAnnotation` is deleted. If `CommentAnnotation` is deleted then `commentText` field will be empty.<br/> - `resolved`: when the `CommentAnnotation` is resolved. `commentText` field will be empty in this case.<br/> - `approved`: when the `CommentAnnotation` is approved by the moderator. This is only applicable if you have turned on Moderator Mode. `commentText` field will be empty in this case. |

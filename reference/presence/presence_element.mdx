@@ -1,0 +1,113 @@
+import CodeSampleWrapper from '../../components/CodeSampleWrapper/CodeSampleWrapper.tsx';
+
+##### The `PresenceElement` class contains the following fields:
+
+## 1. getOnlineUsersOnCurrentDocument()
+
+Subscribe to a list of all online users who are either active or inactive on the current `document`. You can also use this find how many users are online on the current document and show them custom messages.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function getOnlineUsersOnCurrentDocument(): Observable<PresenceUser[]>;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+`Observable<PresenceUser[]>`
+
+## 2. setInactivityTime()
+
+By default if the user is inactive for `>5 minutes`, we mark them offline. By inactive we mean they haven't moved their mouse or haven't made any keyboard event. You can configure this default threshold using this method.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function setInactivityTime(milliseconds: number): void;
+`} />
+
+**Params**
+
+`milliseconds: number`
+
+**Returns**
+
+`void`
+
+## 3. enableFlockMode()
+
+This method is used to enable the flock mode, providing an option to configure additional settings if needed.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableFlockMode(options?: FlockOptions): any;
+`} />
+
+**Params**
+
+options: FlockOptions | undefined
+
+**Returns**
+
+any
+
+## 4. disableFlockMode()
+
+This method is used to disable the flock mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableFlockMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 5. startFollowingUser()
+
+This method is used to start following a specific user.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public startFollowingUser(userId: string, name: string): void;
+`} />
+
+**Params**
+
+userId: string - The ID of the user to follow.
+
+name: string - The name of the user to follow.
+
+**Returns**
+
+`void`
+
+## 6. stopFollowingUser()
+
+This method is used to stop following the currently followed user.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public stopFollowingUser(): void;
+`} />
+
+**Params**
+
+`None`
+
+**Returns**
+
+`void`

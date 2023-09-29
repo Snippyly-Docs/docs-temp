@@ -1,0 +1,17 @@
+.splitPane {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+
+  .left {
+    width: 45%;
+  }
+
+  .right {
+    width: 55%;
+    position: sticky;
+    top: 5rem;
+    height: 100%;
+    overflow-y: auto;
+  }
+}

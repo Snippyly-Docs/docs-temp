@@ -1,0 +1,262 @@
+import { Comment } from '@snippyly/snippyly-demo-component'
+import { documentID } from '../../../../components/documentID'
+import SplitPane from '../../../../components/SplitPane'
+import { Callout } from 'nextra-theme-docs'
+export const commentDocumentId = documentID("comment");
+
+# Stream mode
+
+_Show all comment dialogs in a stream format, similar to Google Docs._
+
+---
+
+<Comment style="margin-top: 2.5rem" mode="stream" user={"Rachel"} documentId={commentDocumentId} height={500}/>
+
+## When to use
+
+Stream mode will show all the comment dialogs in order of submission on the right hand side of the page. It works well with text-based comments, but you can also use it with freestyle mode.
+
+## How to use
+
+### 1. Add the comments component
+
+Import the component:
+
+```ts copy
+import { SnippylyComments } from '@veltdev/react';
+```
+
+Then add it to the root of your React application.
+
+**Example**
+
+<br />
+
+<SplitPane>
+  <div>
+    ```tsx copy {9}
+    import { 
+      SnippylyProvider, 
+      SnippylyComments 
+    } from "@veltdev/react";
+
+    function App() {
+      return (
+        <SnippylyProvider apiKey='...'>
+            <SnippylyComments />
+        </SnippylyProvider>
+      )
+    }
+    ```
+  </div>
+  <div>
+    <Comment paddingBottom="1rem" user={"Rachel"} documentId={commentDocumentId} mode="commentsOnly"/>
+  </div>
+</SplitPane>
+
+<Callout type="warning">
+  The `SnippylyComments` component _**must**_ be in the root App component of your React app
+</Callout>
+
+### 2. Enable stream mode
+
+Enabling stream mode is extremely easy and similar to enabling popover mode:
+
+```js copy
+const commentElement = client.getCommentElement();
+commentElement.enableStreamMode(true);
+```
+
+In your component, provision the **Velt** client:
+
+```tsx copy {1, 5}
+import { useVeltClient } from '@veltdev/react';
+
+const SomeComponent = () => {
+  
+  const { client } = useVeltClient();
+  
+  return (
+    //... rest of the component code...
+  )
+}
+```
+
+Next, create a `useEffect` hook that uses the `client` as a dependency:
+
+```tsx copy {8-12}
+import { useEffect } from 'react';
+import { useVeltClient } from '@veltdev/react';
+
+const SomeComponent = () => {
+  
+  const { client } = useVeltClient();
+  
+
+  useEffect(() => {
+
+  }, [client]);
+
+  
+  return (
+    //... rest of the component code...
+  )
+}
+```
+
+We are gonna define a function `enableStreamMode` that fetches the [`CommentElement`](), and enables streaming mode:
+
+```tsx copy
+const enableStreamMode = () => {
+  if (client) {
+    const commentElement = client.getCommentElement();
+    commentElement.enableStreamMode(true);
+  }
+}
+```
+
+Finally, inside the `useEffect` we created we can add the function call to `enableStreamMode`. Here is the full example in context:
+
+**Example**
+
+```tsx copy {8-21}
+import { useEffect } from "react";
+import { useVeltClient } from '@veltdev/react';
+
+const SomeComponent = () => {
+  
+  const { client } = useVeltClient();
+
+
+  const enableStreamMode = () => {
+    if (client) {
+      const commentElement = client.getCommentElement();
+      commentElement.enableStreamMode(true);
+    }
+  }
+
+  useEffect(() => {
+    if (client) {
+      enableStreamMode();
+    }
+  }, [client]);
+
+  
+  return (
+    //... rest of the component code...
+  )
+}
+
+export default SomeComponent;
+```
+
+### 3a. Add the comment tool component
+
+This will create a button which allows your end-users to add comments. You can add this tag anywhere into your code. You can customize this button or pass your own button as described later on this page.
+
+When your users click on this button, their mouse cursor will change to a comment pin and it will start detecting & highlighting the borders of the underlying elements. Then, clicking on the highlighted element will attach a comment to it.
+
+First import the component:
+
+```ts copy
+import { SnippylyCommentTool } from '@veltdev/react';
+```
+
+Then insert it somewhere in your application.
+
+**Example**
+
+<br />
+
+<SplitPane>
+  <div>
+    ```tsx copy {8}
+    import { 
+      SnippylyCommentTool 
+    } from "@veltdev/react";
+
+    function SomeComponent() {
+      return (
+        <div class="toolbar">
+          <SnippylyCommentTool />
+        </div>
+      )
+    }
+    ```
+  </div>
+  <div>
+    <Comment paddingBottom="1rem" user={"Rachel"} documentId={commentDocumentId} />
+  </div>
+</SplitPane>
+
+<Callout type="info">By default, the `SnippylyCommentTool` is in _**freestyle**_ mode, which places comment pins on the DOM. If you want to read about popover mode, head over [here]()</Callout>
+
+### 3b. Enable text based comments
+
+If you would rather use text based comments instead of freestyle comments, here's how to enable that:
+
+```js copy
+const commentElement = client.getCommentElement();
+commentElement.enableTextComments(true);
+```
+
+We are gonna define a function `enableTextComments` that fetches the [`CommentElement`](), and enables streaming mode:
+
+```tsx copy
+const enableTextComments = () => {
+  if (client) {
+    const commentElement = client.getCommentElement();
+    commentElement.enableTextComments(true);
+  }
+}
+```
+
+Finally, inside the `useEffect` we created we can add the function call to `enableTextComments`. Here is the full example in context:
+
+**Example**
+
+```tsx copy {15-20, 25}
+import { useEffect } from "react";
+import { useVeltClient } from '@veltdev/react';
+
+const SomeComponent = () => {
+  
+  const { client } = useVeltClient();
+
+  const enableStreamMode = () => {
+    if (client) {
+      const commentElement = client.getCommentElement();
+      commentElement.enableStreamMode(true);
+    }
+  }
+
+  const enableTextComments = () => {
+    if (client) {
+      const commentElement = client.getCommentElement();
+      commentElement.enableTextComments(true);
+    }
+  }
+
+  useEffect(() => {
+    if (client) {
+      enableStreamMode();
+      enableTextComments();
+    }
+  }, [client]);
+
+  
+  return (
+    //... rest of the component code...
+  )
+}
+
+export default SomeComponent;
+```
+
+**Result**
+
+<br />
+
+<Comment textMode mode="stream" user={"Rachel"} documentId={commentDocumentId} height={500}/>
+
+

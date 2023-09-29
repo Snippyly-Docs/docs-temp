@@ -1,0 +1,95 @@
+import CodeSampleWrapper from '../../components/CodeSampleWrapper/CodeSampleWrapper.tsx';
+
+##### The `TagElement` class contains the following fields:
+
+## 1. getAllTagAnnotations()
+
+This method retrieves all tag annotations.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public getAllTagAnnotations(documentId?: string, location?: Location): Observable<TagAnnotation[] | null>;
+`} />
+
+**Params**
+
+documentId?: string
+
+location?: Location
+
+**Returns**
+
+`Observable<TagAnnotation[] | null>`
+
+## 2. deleteTag()
+
+To delete selected tags.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public deleteTag(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 3. allowedElementIds()
+
+This method allows specific element IDs.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public allowedElementIds(elementIds: string[]): any;
+`} />
+
+**Params**
+
+elementIds: string[]
+
+**Returns**
+
+any
+
+## 4. attachTag()
+
+To add tags on specific elements.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public attachTag(elementId: string): any;
+`} />
+
+**Params**
+
+elementId: string
+
+**Returns**
+
+any
+
+## 5. addTagModeChange()
+
+Subscribe to add tag mode change.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public addTagModeChange(): Observable<boolean>;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+`Observable<boolean>`

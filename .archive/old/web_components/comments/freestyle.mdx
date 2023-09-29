@@ -1,0 +1,198 @@
+import { Comment } from '@snippyly/snippyly-demo-component'
+import { documentID } from '../../../../components/documentID'
+import { Callout } from 'nextra-theme-docs'
+import SplitPane from '../../../../components/SplitPane'
+export const commentDocumentId = documentID("comment");
+
+# Freestyle mode
+
+_Let your users place comments anywhere on the DOM._
+
+---
+
+<Comment style="margin-top: 2.5rem" user={"Rachel"} documentId={commentDocumentId} height={500}/>
+
+## When to use
+
+If you want users to be able to press a button to enable commenting, and place comment pins anywhere on the DOM, then freestyle mode is the correct choice. If freestyle mode is not right for you, be sure to check out:
+
+- [Popover mode]()
+- [Streaming mode]()
+- [Text based comments]()
+
+## How to use
+
+### 1. Add the comments component
+
+Import the component:
+
+```ts copy
+import { SnippylyComments } from '@veltdev/react';
+```
+
+Then add it to the root of your React application.
+
+**Example**
+
+<br />
+
+<SplitPane>
+  <div>
+    ```tsx copy {9}
+    import { 
+      SnippylyProvider, 
+      SnippylyComments 
+    } from "@veltdev/react";
+
+    function App() {
+      return (
+        <SnippylyProvider apiKey='...'>
+            <SnippylyComments />
+        </SnippylyProvider>
+      )
+    }
+    ```
+  </div>
+  <div>
+    <Comment paddingBottom="1rem" user={"Rachel"} documentId={commentDocumentId} mode="commentsOnly"/>
+  </div>
+</SplitPane>
+
+<Callout type="warning">
+  The `SnippylyComments` component _**must**_ be in the root App component of your React app
+</Callout>
+
+### 2. Add the comment tool component
+
+This will create a button which allows your end-users to add comments. You can add this tag anywhere into your code. You can customize this button or pass your own button as described later on this page.
+
+When your users click on this button, their mouse cursor will change to a comment pin and it will start detecting & highlighting the borders of the underlying elements. Then, clicking on the highlighted element will attach a comment to it.
+
+First import the component:
+
+```ts copy
+import { SnippylyCommentTool } from '@veltdev/react';
+```
+
+Then insert it somewhere in your application.
+
+**Example**
+
+<br />
+
+<SplitPane>
+  <div>
+    ```tsx copy {8}
+    import { 
+      SnippylyCommentTool 
+    } from "@veltdev/react";
+
+    function SomeComponent() {
+      return (
+        <div class="toolbar">
+          <SnippylyCommentTool />
+        </div>
+      )
+    }
+    ```
+  </div>
+  <div>
+    <Comment paddingBottom="1rem" user={"Rachel"} documentId={commentDocumentId} />
+  </div>
+</SplitPane>
+
+<Callout type="info">By default, the `SnippylyCommentTool` is in _**freestyle**_ mode, which places comment pins on the DOM. If you want to read about popover mode, head over [here]()</Callout>
+
+## Customization
+
+### Give the component a class
+
+The simplest way to style the component is to give it a class.
+
+**Example**
+
+```html copy
+<SnippylyCommentTool class="my-custom-css" />
+```
+
+```css copy
+SnippylyCommentTool.my-custom-css {
+  /* Custom CSS */
+}
+```
+
+### Give it a custom trigger button
+
+**Example**
+```html copy
+<SnippylyCommentTool>
+  <button>Add Comment</button>
+</SnippylyCommentTool>
+```
+
+### Style the element-based highlighter
+
+A purple border is added to the target DOM element when:
+
+- you hover on the DOM element with the comment trigger activated
+- you hover on the comment pin
+- you select the comment pin
+
+You can style the highlighter by passing your own CSS class name to the `pin-highlighter-class` attribute of the `<SnippylyComments>` element.
+
+**Example**
+
+```html copy
+<SnippylyComments pin-highlighter-class="custom-class" />
+```
+
+```css copy
+.custom-class {
+  outline: 2px solid black !important;
+}
+```
+
+### Restrict comments to specific DOM elements
+
+By default, your end-users can add a comment to any DOM element or any selected text. 
+
+You can restrict comments to specific DOM elements & their children by providing a list of element ids. For all other DOM elements, comments will be disabled - the DOM highlighter will be turned off and no comments can be attached. Note if you pass an empty array the entire DOM can be commented.
+
+**Example**
+
+```js copy
+const commentElement = client.getCommentElement();
+commentElement.allowedElementIds(['elementId1', 'elementId2']);
+```
+### Disable comments on specific DOM elements
+
+With the above method you can specify where comments could be added, with this feature you can do the inverse. You can specify the DOM elements and its children where comments should be disabled.
+
+You can do so by adding **`data-snippyly-comment-disabled`** attribute to any DOM element. You can manually add it or add it programatically during runtime.
+
+### Enable comments on pre-defined elements only
+
+By default, clicking on `<SnippylyCommentTool>` trigger allows users to attach a comment to any element in a freestyle way. If you want to associate `<SnippylyCommentTool>` with pre-defined elements on the DOM only, then use any of the these two methods:
+
+![](https://files.readme.io/ef78f36-Snippyly_SDK_Pre-defined_Element_Comment.gif "Velt SDK Pre-defined Element Comment.gif")
+
+**a. Using `<SnippylyCommentTool>` trigger**  
+Pass target element's ID in `target-comment-element-id` attribute.  
+Note you can add as many `<SnippylyCommentTool>` triggers as you like and associate each trigger with a unique DOM element ID.
+
+**Example**
+
+```html copy
+<SnippylyCommentTool target-comment-element-id="TARGET_ELEMENT_ID">
+  <!-- Your custom UI here -->
+</SnippylyCommentTool>
+```
+
+**b. Using `attachComment()` method**  
+Pass target element's ID in `attachComment()` method.  
+An example on how you can use this: Show a button on hover on any DOM element. On click, call this method and pass that DOM element's ID. The comment will then be attached to the element.
+
+```js copy
+const commentElement = client.getCommentElement();
+commentElement.attachComment(TARGET_ELEMENT_ID);
+```

@@ -1,0 +1,80 @@
+import FlockDemo from '../../components/FlockDemo/FlockDemo.tsx';
+import Subheading from '../../components/Subheading/Subheading.tsx';
+import HTMLFlockOverview from '../../code_sections/flock/HTMLFlockOverview.tsx';
+import ReactFlockOverview from '../../code_sections/flock/ReactFlockOverview.tsx';
+import StepTabs from '../../components/StepTabs/StepTabs.tsx';
+import ReactFlockCustom from '../../code_sections/flock/ReactFlockCustom.tsx';
+import HTMLFlockCustom from '../../code_sections/flock/HTMLFlockCustom.tsx';
+import ReactFlockAPI from '../../code_sections/flock/ReactFlockAPI.tsx';
+import HTMLFlockAPI from '../../code_sections/flock/HTMLFlockAPI.tsx';
+import { NextSeo } from 'next-seo';
+
+# Flock Mode [#flock-mode]
+
+<NextSeo 
+  title="Velt Docs - Flock Mode"
+  description="Flock mode documentation page for the Velt SDK"
+/>
+<Subheading>This is like Figma's follow along feature. Start a shared session in a click. One person is the leader, and whatever they do - like clicking, scrolling, or navigating - happens automatically on everyone else's screen.</Subheading>
+<FlockDemo />
+
+# Steps [#steps]
+
+export function FlockSteps() {
+
+  const frontendOptions = {
+    'React': <ReactFlockOverview sectionId="steps" />,
+    'Next.js': <ReactFlockOverview sectionId="steps" />,
+    // 'HTML': <HTMLFlockOverview sectionId="steps" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<FlockSteps />
+
+# Customize Behavior [#customize-behavior]
+
+export function FlockCustomSteps() {
+
+  const frontendOptions = {
+    'React': <ReactFlockCustom sectionId="customize-behavior" />,
+    'Next.js': <ReactFlockCustom sectionId="customize-behavior" />,
+    'HTML': <HTMLFlockCustom sectionId="customize-behavior" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<FlockCustomSteps />
+
+## PageInfo
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `baseUrl` | `string` | The base URL of the site |
+| `path` | `string` | The path after the base URL |
+| `url` | `string` | The full URL |
+
+# API [#api]
+Programtically start and stop a flock session.
+<br />
+
+export function FlockAPISteps() {
+
+  const frontendOptions = {
+    'React': <ReactFlockAPI sectionId="api" />,
+    'Next.js': <ReactFlockAPI sectionId="api" />,
+    'HTML': <HTMLFlockAPI sectionId="api" />
+  };
+  
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<FlockAPISteps />

@@ -1,0 +1,44 @@
+import Subheading from '../../components/Subheading/Subheading.tsx';
+import SystemCommentsOverview from '../../code_sections/system_comments/SystemCommentsOverview.tsx';
+
+import { NextSeo } from 'next-seo';
+
+# System Comments [#system-comments]
+
+<NextSeo 
+  title="Velt Docs - System Comments"
+  description="System comments documentation page for the Velt SDK"
+/>
+{
+  <Subheading>
+    This process outlines the steps to add system comments through the abc.com portal. It involves generating an authentication token from the configurations menu, then using this token to construct and send a POST API request. The API call uses JSON data and includes the token in the body, alongside other required inputs.
+  </Subheading>
+}
+{/* <CommentsDemo demoUrl="comments-sidebar" /> */}
+
+# Steps [#steps]
+
+export function SystemCommentsOverviewSteps() {
+
+//   const frontendOptions = {
+//     'React': <ReactSidebarOverview sectionId="steps" />,
+//     'Next.js': <ReactSidebarOverview sectionId="steps" />,
+//     'HTML': <HTMLSidebarOverview sectionId="steps" />
+//   };
+
+  return (
+    // <StepTabs frontendOptions={frontendOptions} />
+    <SystemCommentsOverview sectionId="steps" />
+  );
+}
+
+<SystemCommentsOverviewSteps />
+
+| Field | Type | Description |
+| --- | --- | --- |
+| apiKey | string | The API key for the project |
+| authToken | string | The authentication token generated from the configurations menu |
+| documentId | string | The document ID where the comment was added |
+| targetElement | object | The target element on which you want to add comment |
+| commentData | object[] | The comment data to be added |
+| location | string | The location where the comment was added |

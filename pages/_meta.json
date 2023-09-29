@@ -1,0 +1,30 @@
+{
+  "index": {
+    "hidden": true
+  },
+  "get_started": {
+    "title": "Get Started"
+  },
+  "users": {
+    "title": "Users"
+  },
+  "realtime": {
+    "title": "Realtime Collaboration"
+  },
+  "async": {
+    "title": "Async Collaboration"
+  },
+  "ai": {
+    "title": "AI Copilot"
+  },
+  "user_feedback": {
+    "title": "In-App User Feedback"
+  },
+  "permission_management": {
+    "title": "Permission Management"
+  },
+  
+  "reference": {
+    "title": "API Reference"
+  }
+}

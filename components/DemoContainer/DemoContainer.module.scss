@@ -1,0 +1,10 @@
+.demoContainer {
+  background-color: var(--demo-bg-color);
+  border: 1px solid var(--demo-border-color);
+  height: 316px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}

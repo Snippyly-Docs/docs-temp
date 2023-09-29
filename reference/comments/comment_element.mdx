@@ -1,0 +1,1193 @@
+import CodeSampleWrapper from '../../components/CodeSampleWrapper/CodeSampleWrapper.tsx';
+
+##### The `CommentElement` class contains the following fields:
+
+## 1. getAllCommentAnnotations()
+
+This method is used to subscribe to a list of all comment annotations on the current document or a specified document.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public getAllCommentAnnotations(documentId?: string, location?: Location): Observable<CommentAnnotation[] | null>;
+`} />
+
+**Params**
+
+documentId: string | undefined - The ID of the document to get comment annotations from. If not specified, the current document is used.
+
+location: Location | undefined - The location within the document to get comment annotations from. If not specified, the entire document is searched.
+
+**Returns**
+
+`Observable<CommentAnnotation[] | null>`
+
+## 2. deleteComment()
+
+This method is used to delete a comment. This will remove the comment from the list of comments and will notify all subscribers about the change.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public deleteComment(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 3. enableTextComments()
+
+This method is used to enable text comments. This allows users to create, read, update, and delete text comments.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableTextComments(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 4. disableTextComments()
+
+This method is used to disable text comments. This prevents users from creating, reading, updating, or deleting text comments.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableTextComments(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 5. allowedElementIds()
+
+This method allows you to specify which elements can show the cursor on them.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public allowedElementIds(elementIds: string[]): any;
+`} />
+
+**Params**
+
+elementIds: string[] - The IDs of the elements to be allowed to show cursor on them
+
+**Returns**
+
+any
+
+## 6. enableFloatingComments()
+
+This method enables the floating comments feature. Note: This method is deprecated, use `enableFloatingCommentDialog` instead.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableFloatingComments(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 7. disableFloatingComments()
+
+This method disables the floating comments feature. Note: This method is deprecated, use `disableFloatingCommentDialog` instead.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableFloatingComments(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 8. enableFloatingCommentDialog()
+
+This method enables the floating comment dialog feature.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableFloatingCommentDialog(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 9. disableFloatingCommentDialog()
+
+This method disables the floating comment dialog feature.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableFloatingCommentDialog(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 10. attachComment()
+
+This method attaches a comment to a specific element.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public attachComment(elementId: string): any;
+`} />
+
+**Params**
+
+elementId: string - The ID of the element to which the comment is attached
+
+**Returns**
+
+any
+
+## 11. openCommentSidebar()
+
+This method is used to open the comment sidebar.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public openCommentSidebar(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 12. closeCommentSidebar()
+
+This method is used to close the comment sidebar.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public closeCommentSidebar(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 13. toggleCommentSidebar()
+
+This method is used to toggle the visibility of the comment sidebar.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public toggleCommentSidebar(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 14. enableModeratorMode()
+
+This method is used to enable moderator mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableModeratorMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 15. disableModeratorMode()
+
+This method is used to disable moderator mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableModeratorMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 16. enableStreamMode()
+
+This method enables the stream mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableStreamMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 17. disableStreamMode()
+
+This method disables the stream mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableStreamMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 18. enableSignInButton()
+
+This method enables the sign-in button.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableSignInButton(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 19. disableSignInButton()
+
+This method disables the sign-in button.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableSignInButton(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 20. enableUpgradeButton()
+
+This method enables the upgrade button.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableUpgradeButton(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 21. disableUpgradeButton()
+
+This method disables the upgrade button.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableUpgradeButton(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 22. addCommentModeChange()
+
+This method is deprecated. Use onCommentModeChange instead.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public addCommentModeChange(): Observable<boolean>;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+`Observable<boolean>`
+
+## 23. onCommentModeChange()
+
+This method returns an observable for comment mode changes.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public onCommentModeChange(): Observable<boolean>;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+`Observable<boolean>`
+
+## 24. enableAttachment()
+
+This method is deprecated. Use enableAttachments instead.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableAttachment(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 25. disableAttachment()
+
+This method is deprecated. Use disableAttachments instead.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableAttachment(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 26. enableAttachments()
+
+This method enables the attachments.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableAttachments(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 27. disableAttachments()
+
+This method disables the attachments.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableAttachments(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 28. isUserGlobalContact()
+
+This method checks if the user is a global contact.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public isUserGlobalContact(): Observable<boolean>;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+`Observable<boolean>`
+
+## 29. showDeviceInfo()
+
+This method is deprecated. Use enableDeviceInfo and disableDeviceInfo instead.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public showDeviceInfo(showInfo: boolean): any;
+`} />
+
+**Params**
+
+`showInfo: boolean`
+
+**Returns**
+
+any
+
+## 30. enableDeviceInfo()
+
+This method enables the device info.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableDeviceInfo(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 31. disableDeviceInfo()
+
+This method disables the device info.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableDeviceInfo(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 32. enableCommentMode()
+
+This method enables the comment mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableCommentMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 33. disableCommentMode()
+
+This method disables the comment mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableCommentMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 34. showCommentIndex()
+
+This method is deprecated. Use enableCommentIndex and disableCommentIndex instead.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public showCommentIndex(show: boolean): any;
+`} />
+
+**Params**
+
+`show: boolean`
+
+**Returns**
+
+any
+
+## 35. enableCommentIndex()
+
+This method enables the comment index.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableCommentIndex(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 36. disableCommentIndex()
+
+This method disables the comment index.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableCommentIndex(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 37. enablePopoverMode()
+
+This method enables the popover mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enablePopoverMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 38. disablePopoverMode()
+
+This method disables the popover mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disablePopoverMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 39. enablePopoverTriangleComponent()
+
+This method enables the popover triangle component.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enablePopoverTriangleComponent(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 40. disablePopoverTriangleComponent()
+
+This method disables the popover triangle component.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disablePopoverTriangleComponent(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 41. enableDialogOnHover()
+
+This method enables the dialog on hover.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableDialogOnHover(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 42. disableDialogOnHover()
+
+This method disables the dialog on hover.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableDialogOnHover(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 43. enableDialogOnTargetElementClick()
+
+This method enables the dialog on target element click.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableDialogOnTargetElementClick(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 44. disableDialogOnTargetElementClick()
+
+This method disables the dialog on target element click.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableDialogOnTargetElementClick(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 45. enablePriority()
+
+This method enables priority.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enablePriority(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 46. disablePriority()
+
+This method disables priority.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disablePriority(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 47. enableStatus()
+
+This method enables status.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableStatus(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 48. disableStatus()
+
+This method disables status.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableStatus(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 49. enableResolveButton()
+
+This method enables the resolve button.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableResolveButton(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 50. disableResolveButton()
+
+This method disables the resolve button.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableResolveButton(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 51. enableGhostComments()
+
+This method enables ghost comments.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableGhostComments(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 52. disableGhostComments()
+
+This method disables ghost comments.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableGhostComments(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 53. enableGhostCommentsIndicator()
+
+This method enables the ghost comments indicator.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableGhostCommentsIndicator(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 54. disableGhostCommentsIndicator()
+
+This method disables the ghost comments indicator.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableGhostCommentsIndicator(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 55. setCustomStatus()
+
+This method sets custom statuses.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public setCustomStatus(statuses: CustomStatus[]): void;
+`} />
+
+**Params**
+
+statuses: `CustomStatus[]`
+
+**Returns**
+
+void
+
+## 56. setCustomPriority()
+
+This method sets custom priorities.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public setCustomPriority(priorities: CustomPriority[]): void;
+`} />
+
+**Params**
+
+priorities: `CustomPriority[]`
+
+**Returns**
+
+void
+
+## 57. setCustomCategory()
+
+This method sets custom categories.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public setCustomCategory(categories: CustomCategory[]): void;
+`} />
+
+**Params**
+
+categories: `CustomCategory[]`
+
+**Returns**
+
+void
+
+## 58. enableInboxMode()
+
+This method enables inbox mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableInboxMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 59. disableInboxMode()
+
+This method disables inbox mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableInboxMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 60. enableAutoCategorize()
+
+This method enables automatic categorization.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableAutoCategorize(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 61. disableAutoCategorize()
+
+This method disables automatic categorization.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableAutoCategorize(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 62. enableDarkMode()
+
+This method enables the dark mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableDarkMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 63. disableDarkMode()
+
+This method disables the dark mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableDarkMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 64. setContextProvider()
+
+This method sets the context provider.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public setContextProvider(provider: (documentId: string, location?: Location) => any): void;
+`} />
+
+**Params**
+
+provider: `(documentId: string, location?: Location) => any`
+
+**Returns**
+
+void
+
+## 65. enableSuggestionMode()
+
+This method enables the suggestion mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public enableSuggestionMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any
+
+## 66. disableSuggestionMode()
+
+This method disables the suggestion mode.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public disableSuggestionMode(): any;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+any

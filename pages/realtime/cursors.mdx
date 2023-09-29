@@ -1,0 +1,138 @@
+import Subheading from '../../components/Subheading/Subheading.tsx';
+import CursorDemo from '../../components/CursorDemo/CursorDemo.tsx';
+import ReactCursorOverview from '../../code_sections/cursor/ReactCursorOverview.tsx';
+import HTMLCursorOverview from '../../code_sections/cursor/HTMLCursorOverview.tsx';
+import ReactCursorCustomBehavior from '../../code_sections/cursor/ReactCursorCustomBehavior.tsx';
+import HTMLCursorCustom from '../../code_sections/cursor/HTMLCursorCustom.tsx';
+import HTMLCursorSlot from '../../code_sections/cursor/HTMLCursorSlot.tsx';
+import ReactCursorSlot from '../../code_sections/cursor/ReactCursorSlot.tsx';
+import CursorParts from '../../code_sections/cursor/CursorParts.tsx';
+import CursorVariables from '../../code_sections/cursor/CursorVariables.tsx';
+import HTMLCursorData from '../../code_sections/cursor/HTMLCursorData.tsx';
+import ReactCursorData from '../../code_sections/cursor/ReactCursorData.tsx';
+import StepTabs from '../../components/StepTabs/StepTabs.tsx';
+import { NextSeo } from 'next-seo';
+
+# Cursors [#cursors]
+
+<NextSeo 
+  title="Velt Docs - Cursors"
+  description="Live cursors documentation page for the Velt SDK"
+/>
+<Subheading>Your users can view each other's cursors when interacting on the same document. This makes your app more alive.
+We handle the complexity of adapting the cursors to different screen sizes, differences in content etc.</Subheading>
+<CursorDemo />
+
+# Steps [#steps]
+
+export function CursorSteps() {
+
+  const frontendOptions = {
+    'React': <ReactCursorOverview sectionId="steps" />,
+    'Next.js': <ReactCursorOverview sectionId="steps" />,
+    // 'HTML': <HTMLCursorOverview sectionId="steps" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<CursorSteps />
+
+# Customize Behavior [#customize-behavior]
+
+export function CursorCustomizeBehavior() {
+
+  const frontendOptions = {
+    'React': <ReactCursorCustomBehavior sectionId="customize-behavior" />,
+    'Next.js': <ReactCursorCustomBehavior sectionId="customize-behavior" />,
+    'HTML': <HTMLCursorCustom sectionId="customize-behavior" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<CursorCustomizeBehavior />
+
+# Customize UI [#customize-ui]
+
+## 1. Slots
+
+export function CursorSlotSteps() {
+
+  const frontendOptions = {
+    'React': <ReactCursorSlot sectionId="customize-ui" />,
+    'Next.js': <ReactCursorSlot sectionId="customize-ui" />,
+    'HTML': <HTMLCursorSlot sectionId="customize-ui" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<CursorSlotSteps />
+
+## 2. Parts [#customize-parts]
+
+export function CursorCSSParts() {
+
+  const frontendOptions = {
+    'All': <CursorParts sectionId="customize-parts" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<CursorCSSParts />
+
+| Part Name | What does it do? |
+| --------- | ---------------- |
+| `container` | Targets the root cursor container. |
+| `svg` | Targets the cursor svg icon. |
+| `huddle-avatar-container` | Targets the cursor avatar specific to huddle mode. You can learn more about this in the Huddle Feature. |
+| `avatar-container` | Targets the avatar container specific to avatar mode. |
+| `label-container` | Targets the label container. |
+| `label` | Targets the label text. |
+
+## 3. Variables [#customize-vars]
+
+export function CursorCSSVariables() {
+
+  const frontendOptions = {
+    'All': <CursorVariables sectionId="customize-vars" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<CursorCSSVariables />
+
+| Variable Name | Default | What does it do? |
+| ------------- | ------- | ---------------- |
+| `--velt-cursor-avatar-size` | `2rem` | Sets the Cursor avatar size in avatar mode. |
+| `--velt-cursor-video-size` | `4.2rem` | Sets the Cursor video bubble size in Huddle mode. You can learn more about this in the Huddle Feature. |
+
+## 4. Build your own UI [#get-cursors]
+
+export function CursorDataSteps() {
+
+  const frontendOptions = {
+    'React': <ReactCursorData sectionId="get-cursors" />,
+    'Next.js': <ReactCursorData sectionId="get-cursors" />,
+    'HTML': <HTMLCursorData sectionId="get-cursors" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<CursorDataSteps />

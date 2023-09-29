@@ -1,0 +1,115 @@
+import { Callout } from 'nextra-theme-docs';
+
+# Recorded Videos
+
+_Leave recorded videos to explain things quickly to your teammates._
+
+---
+
+import { Recorder } from '@snippyly/snippyly-demo-component'
+import { documentID } from '../../../components/documentID'
+
+export const recorderDocumentId = documentID("recorder");
+
+<Recorder user={"Rachel"} documentId={recorderDocumentId}/>
+
+## 1: Add the control panel and notes components
+
+These two components are required to show ongoing recording as well as recorded notes, respectively.
+
+**Example**
+
+```html copy
+<snippyly-recorder-control-panel></snippyly-recorder-control-panel>
+<snippyly-recorder-notes></snippyly-recorder-notes>
+```
+
+<Callout type="warning">
+  Both components go in the root App component of your React app
+</Callout>
+
+## 2: Add the record button
+
+The recorder tool allows the user to start a recording. You can pass in a `type` attribute to record `audio`, `video`, `screen`, or `all`. Default is `video`.
+
+**Example**
+
+```html copy
+<snippyly-recorder-tool type="video"></snippyly-recorder-tool>
+```
+
+## 3: Use the client API
+
+We've also provided an advanced way to starting recording using our API. If you want to use your own button or any other UI for recording, then you can use the client APIs to achieve that.
+
+**Example**
+
+```js copy
+const recorderElement = Velt.getRecorderElement();
+recorderElement.initRecording(type);
+```
+
+<Callout type="info">
+  Check out the [recorder element reference]() to see what you can do!
+</Callout>
+
+## 4: Set recording mode
+
+There are 2 modes of recording, the `floating` mode and `thread` mode. Default mode is `floating` mode.
+
+The default implementation uses `floating` mode. When you start recording in this mode, the recording preview and actions panel will be visible in the bottom left corner, and you will be able to drag and drop recordings to any elements similar to comment pins.
+
+If you want to show recorded data on some specific place then you can use the `thread` mode of the recorder.
+
+**Example**
+
+```html copy
+<snippyly-recorder-control-panel mode="thread"></snippyly-recorder-control-panel>
+```
+
+Set attribute `mode` and value `thread` in `snippyly-recorder-control-panel` tag. In this mode, you will see a recording preview on the place where you have added the above tag, instead of the bottom left corner like floating mode.
+
+Once recording is stopped, you will get recorded data object. To get the data, you will have to listen to the `onRecordedData` event in the `snippyly-recorder-control-panel` tag.
+
+**Example**
+
+```js copy
+const recorderControlPanelElement = document.querySelector('snippyly-recorder-control-panel');
+recorderControlPanelElement.addEventListener('onRecordedData', (event) => {
+  console.log('onRecordedData', event.detail);
+});
+```
+
+Here's what you can expect in the `event.detail`:
+```js
+{
+    "id": "RECORDER_ID",
+    "tag": "<snippyly-recorder-player recorder-id=\"RECORDER_ID\"></snippyly-recorder-player>"
+}
+```
+
+You can add `snippyly-recorder-player` tag anywhere in your website. The SDK will detect it and will show the recording at that place. It will not be visible if the recorder id is invalid or the recording of that id is deleted.
+
+## 5: Customization
+
+### Add a custom button label
+
+To add a custom label to the recorder tool pass a string to the `buttonLabel` attribute on the `<SnippylyRecorderTool>` component.
+
+**Example**
+
+```html copy
+<SnippylyRecorderTool type="all" buttonLabel="Add Recording" />
+```
+
+### Replace the button
+
+To use your own button instead of ours, pass your button html code into `<SnippylyRecorderTool>` component.
+
+**Example**
+
+```html copy
+<SnippylyRecorderTool type="all">
+  <button>Start Recording</button>
+</SnippylyRecorderTool>
+```

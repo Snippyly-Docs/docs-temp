@@ -1,0 +1,399 @@
+import { Callout } from 'nextra-theme-docs';
+
+# Configuration
+
+_Learn how to unlock the most out of the SDK._
+
+---
+
+## 1. Authentication
+
+<Callout type="warning" emoji="⚠️">Don't have an API key? Get one here!</Callout>
+
+First, you need to initialize the **SnippylyProvider** with a client authentication token. If you don't have one, go ahead and [visit our website]() to sign up! Insert the **SnipplyProvider** in the _root of your application_.
+
+First import the `SnipplyProvider`:
+
+```js copy
+import { SnippylyProvider } from '@veltdev/react';
+```
+
+Then you can add it to your HTML with your API key:
+
+```html copy
+<React.StrictMode>
+  <SnippylyProvider apiKey="API_KEY">
+    <App />
+  </SnippylyProvider>
+</React.StrictMode>
+```
+
+The **SnippylyProvider** acts as a [React context provider](https://reactjs.org/docs/context.html), so you can only use the **Velt Client** within its context.
+
+### Configuring the Client
+
+The **SnippylyProvider** also takes a `config` property to restrict certain features. Here's how to restrict **Velt** features to a certain URL:
+
+```jsx copy {3-5}
+<SnippylyProvider
+  apiKey="API_KEY"
+  config={{
+    urlAllowList: ['/review']
+  }}
+>
+```
+
+You can view the reference [here]() to check out all the different configuration options available.
+
+## 2. Using the Velt Client
+
+The `@veltdev/react` package provides a convenient hook `useVeltClient` to provision the SDK client.
+
+First import the `SnipplyClient`:
+
+```js copy
+import { useVeltClient } from '@veltdev/react';
+```
+
+Then you can use the provided hook to fetch an instance of the client:
+
+```js copy
+const { client } = useSnipplyClient();
+```
+
+To test the client out, we can add a `useEffect` hook to our component and log the `client.version` property. Within your React component, create a new effect:
+
+```js copy
+useEffect(() => {
+  if (client) {
+    console.log(client.version);
+  }
+}, [client]);
+```
+
+This effect simply checks if the client has been provisioned, and logs the current SDK version to the console. Here is what the full example looks like in context:
+
+```js copy
+import { useVeltClient } from '@veltdev/react';
+
+function SomeComponent() {
+
+  const { client } = useVeltClient();
+
+  useEffect(() => {
+    if (client) {
+      console.log(client.version);
+    }
+  }, [client]);
+
+  return ();
+}
+```
+
+When your component is rendered, you should verify for yourself that the **Velt** SDK is _loaded, working, and on the intended version_. Note that when using the **Velt** client in a React effect, it is a general best practice to check if the client is `undefined`.
+
+## 3. Identifying your Users
+
+**Velt** needs to know who is logged in to your application! This is so we can accurately provide cursors, presence, comments, etc.
+
+### _When should I identify users?_
+
+> **You must identify the user every time the SDK is loaded on the browser for the first time.**
+> For example, when a new session/tab is created you must re-identify the user.
+
+Everyone handles authentication differently in their applications, so there isn't a one size fits all solution. The main point is that _when the user is logged in_, you should also identify the user with the **Velt** client.
+
+### Example with Firebase Authentication
+
+Let's walk through a specific example using Firebase Authentication. Here's some typical Firebase code you would find in a React application:
+
+```js copy
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
+const app = firebase.initializeApp(firebaseConfig);
+export const auth = firebase.auth(app);
+const provider = new firebase.auth.GoogleAuthProvider();
+
+export const signInWithGoogle = () => {
+  return auth.signInWithPopup(provider);
+};
+```
+
+The code snippet above initializes the Firebase SDK. **This code example is not important** -- all you need to know is that the code exports a function `signInWithGoogle` that we will be using in our example below.
+
+First import the `useVeltClient` hook as well as the `signInWithGoogle` function we defined in the Firebase code.
+
+```js copy
+import { useVeltClient } from '@veltdev/react';
+import { signInWithGoogle } from '../firebase';
+```
+
+Second, we add a button to our React component that calls a handler function `signInHandler`:
+
+```jsx copy
+return (
+  <button onClick={ signInHandler }>Log in with Google</button>
+);
+```
+
+Within our component, provision an instance of the **Velt** client:
+
+```js copy {6}
+import { useVeltClient } from '@veltdev/react';
+import { signInWithGoogle } from '../firebase';
+
+function LoginComponent() {
+
+  const { client } = useVeltClient();
+
+  return (
+    <button onClick={ signInHandler }>Log in with Google</button>
+  );
+}
+```
+
+Lastly, we can define the function `signInHandler`. This function calls the `signInWithGoogle` function we made earlier, which prompts the user to login via Google. If the user is logged in successfully, we identify the user using the `identify` function provided by the **Velt** client:
+
+```js copy
+const signInHandler = async () => {
+  try {
+    const credentials = await signInWithGoogle();
+    if (credentials.user === null) return;
+    if (!client) return;
+
+    const snippylyUser = {
+      userId: credentials.user.userInfo.uid,
+      name: credentials.user.userInfo.displayName,
+      email: credentials.user.userInfo.email,
+      photoUrl: credentials.user.userInfo.photoURL
+    };
+    const res = await client.identify(snippylyUser);
+    // Success!
+  } catch (err) {
+    // Do something with the error!
+    console.log(err);
+  }
+};
+```
+
+The `identify` function accepts a [User]() as its only parameter. If your authentication method provides user data, you may have to map that data to our **Velt** [User]() object like in our Firebase example:
+
+```js copy
+const snippylyUser = {
+  userId: credentials.user.userInfo.uid,
+  name: credentials.user.userInfo.displayName,
+  email: credentials.user.userInfo.email,
+  photoUrl: credentials.user.userInfo.photoURL
+};
+```
+
+Keep in mind this is only one method of logging the user in, and you will have to decide where to identify the user in your _specific_ application. Here's the full example in context:
+
+```js copy
+import { useVeltClient } from '@veltdev/react';
+import { signInWithGoogle } from '../firebase';
+
+function LoginComponent() {
+
+  const { client } = useVeltClient();
+
+  const signInHandler = async () => {
+    try {
+      const credentials = await signInWithGoogle();
+      if (credentials.user === null) return;
+      if (!client) return;
+
+      const snippylyUser = {
+        userId: credentials.user.userInfo.uid,
+        name: credentials.user.userInfo.displayName,
+        email: credentials.user.userInfo.email,
+        photoUrl: credentials.user.userInfo.photoURL
+      };
+
+      client.identify(snippylyUser);
+      // Success!
+    } catch (err) {
+      // Do something with the error!
+      console.log(err);
+    }
+  };
+
+  return (
+    <button onClick={ signInHandler }>Log in with Google</button>
+  );
+}
+```
+
+Be sure to check out the reference, specifically the [User]() and the [Client]() to see exactly what's available to you.
+
+### Signing Out
+
+Signing the user out is extremely simple. Just add this function call to your logout code:
+
+```js copy
+client.signOutUser();
+```
+
+The `signOutUser` function returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), so you can use it with `async/await`.
+
+## 4. Tracking the User
+
+Lastly, Velt needs to know what part of your app the user is currently on! **Documents** and **Locations** are how you can provide that information.
+
+### Setting the Document ID
+
+A **Document** is like a _Building_. Users in the same **Document** can interact with each other. A **Document** can be represented with a string identifier.
+
+Here, we will set our **Document ID**, which is like setting the address of the building that the current user is in.
+
+```js copy {7-11}
+import { useVeltClient } from '@veltdev/react';
+
+function SomeComponent() {
+
+  const { client } = useVeltClient();
+
+  useEffect(() => {
+    if (client) {
+      client.setDocumentID('some_document_id');
+    }
+  }, [client]);
+
+  return ();
+}
+```
+
+In this example, we use a React effect to set the **Document ID** to the string `some_document_id`. Now, if two users are online, and also in the same **Document** `some_document_id`, they should be able to interact with each other using our [pre-made web components]().
+
+### Setting the Location
+
+> If a **Document** is like a building, what are the rooms?
+
+A **Location** is like a _Room_. Users in the same room can talk to each other, see each other, and interact in real-time! **Locations** are _completely optional_, you can opt to use them or not. If you opt to use **Locations**, users in the same **Document** must also be in the same **Location** now to interact. A **Location** can be described using any plain JSON object.
+
+> What if I don't set the **Document**?
+
+Your user won't be able to interact with _anyone_!
+
+> What if I don't want to use **Locations**?
+
+If the complexity of your application does not require the use of **Locations**, you can use **Documents** by themselves to group your users together.
+
+Here, we will set the **Document ID** as well as the **Location**.
+
+```js copy {7-11}
+import { useVeltClient } from '@veltdev/react';
+
+function SomeComponent() {
+
+  const { client } = useVeltClient();
+
+  useEffect(() => {
+    if (client) {
+      client.setDocumentID('some_document_id');
+      client.setLocation({id: 1});
+    }
+  }, [client]);
+
+  return ();
+}
+```
+
+In this example, we set the **Document ID** as `some_document_id`, and the **Location** to an object with an ID property and value of `1`. _If you specify a **Location**_, users in the same **Document** will no longer be able to interact if they are not also in the same **Location**.
+
+
+### Multiple Locations
+
+One neat feature of **Locations** is that the user can actually be in multiple locations at once!
+
+**Example**
+
+```js copy {10-11}
+import { useVeltClient } from '@veltdev/react';
+
+function SomeComponent() {
+
+  const { client } = useVeltClient();
+
+  useEffect(() => {
+    if (client) {
+      client.setDocumentID('some_document_id');
+      client.addLocation({id: 1});
+      client.addLocation({id: 2});
+    }
+  }, [client]);
+
+  return ();
+}
+```
+
+In this example, the user will have access to both location 1 and location 2!
+
+### Location data attributes
+
+If you don't want to use JS to set the client location, you can alternatively use data attributes. Add the `data-snippyly-location` attribute to the top level of an element where you want to set the custom location object.
+
+**Example**
+
+```html copy {4}
+<div class="container">
+  // If you want to add comments to location {"key1": "value1"}, if it is added inside below div
+  // then add location attribute to below div as mentioned here
+  <div class="sub-container" data-snippyly-location='{"key1": "value1"}'>
+    <div class="card">
+      ... any content ...
+    </div>
+  </div>
+</div>
+```
+
+<Callout type="info">
+  **Note:** Make sure that you are converting object to string before setting it to location attribute.
+</Callout>
+
+## 5. Extra User Configurations
+
+{/* <Callout type="info">Don't want to read about more configuration? Move on to some of our basic concepts [here]()!</Callout> */}
+
+There are some extra configurations to the `User` that you can make that will help you unlock the most value out of the SDK. 
+
+### Contacts
+
+When identifying the user, you can provide a list of [UserContact]() entries that we will use to map those contacts to that particular user. For example:
+
+```js copy {5-10}
+client.identify({
+  userId: "some_user_uuid",
+  name: "Peter Parker",
+  email: "peter@superheroes.com",
+  contacts: [
+    {
+      name: "Mary Jane",
+      email: "mjane@spidertalent.com"
+    }
+  ]
+});
+```
+
+If you identify the user **Peter Parker** like in the example above, that user will now be able to tag **Mary Jane** _(mjane@spidertalent.com)_ in comments!
+
+<Callout type="info">Read more about tags and contacts [here]().</Callout>
+
+### Updating the User
+
+At any time, if you need to update the user's data, you can use the `updateUser` function available on the **Velt** client:
+
+```js copy
+client.updateUser({userId: "some_user_uuid"});
+```
+
+If you provide a different UUID than the original user, the client will re-initialize with that new user. Check out the [User]() reference to check out what fields you can update.
+
+## Next Steps
+
+<Callout type="warning">Make sure you configure your installation correctly before moving on!</Callout>
+
+* Now you can move on to learn some of our [main concepts]()!
+* Check out what [web components]() we've built for your convenience!
+* Learn how to maximize your usage of the SDK with [elements]()!

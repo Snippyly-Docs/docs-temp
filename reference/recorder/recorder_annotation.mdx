@@ -1,0 +1,17 @@
+| Field | Type | Description |
+| --- | --- | --- |
+| `annotationId` | `string` | Unique identifier for the recorder pin annotation |
+| `from` | `User` | The user who created this recorder pin annotation |
+| `color` | `string \| undefined` | Color used for the recorder pin annotation |
+| `lastUpdated` | `any \| undefined` | Timestamp when the recorder annotation was last updated |
+| `positionX` | `number \| undefined` | Recorder annotation's position on the X axis |
+| `positionY` | `number \| undefined` | Recorder annotation's position on the Y axis |
+| `location` | `Location \| null \| undefined` | Set location to identify user on sub document |
+| `type` | `string` | Type of the annotation |
+| `recordingType` | `string` | Type of the recording |
+| `mode` | `'floating' \| 'thread'` | Mode of the recorder |
+| `approved` | `boolean \| undefined` | Approval status |
+| `annotationIndex` | `number \| undefined` | Index of current annotation |
+| `pageInfo` | `PageInfo` | Page Information |
+| `recordedTime` | `{ duration?: number, display?: string } \| null \| undefined` | Recorded time in milliseconds and default (hh:mm:ss) display format |
+| `transcription` | `Transcription \| undefined` | Transcription of the recorded media |

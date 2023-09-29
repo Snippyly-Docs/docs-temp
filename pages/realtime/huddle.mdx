@@ -1,0 +1,39 @@
+
+import Subheading from '../../components/Subheading/Subheading.tsx';
+import HuddleDemo from '../../components/HuddleDemo/HuddleDemo.tsx';
+import ReactHuddleOverview from '../../code_sections/huddle/ReactHuddleOverview.tsx';
+import HTMLHuddleOverview from '../../code_sections/huddle/HTMLHuddleOverview.tsx';
+import ReactHuddleCustomBehavior from '../../code_sections/huddle/ReactHuddleCustomBehavior.tsx';
+import HTMLHuddleCustom from '../../code_sections/huddle/HTMLHuddleCustom.tsx';
+import HuddleParts from '../../code_sections/huddle/HuddleParts.tsx';
+import HuddleVariables from '../../code_sections/huddle/HuddleVariables.tsx';
+import ReactHuddleData from '../../code_sections/huddle/ReactHuddleData.tsx';
+import HTMLHuddleData from '../../code_sections/huddle/HTMLHuddleData.tsx';
+import StepTabs from '../../components/StepTabs/StepTabs.tsx';
+import { NextSeo } from 'next-seo';
+
+# Huddle [#huddle]
+
+<NextSeo 
+  title="Velt Docs - Huddle"
+  description="Live huddle documentation page for the Velt SDK"
+/>
+<Subheading>Enable slack-style effortless audio, video and screen sharing discussions inside your own product.</Subheading>
+<HuddleDemo />
+
+# Steps [#steps]
+
+export function HuddleSteps() {
+
+  const frontendOptions = {
+    'React': <ReactHuddleOverview sectionId="steps" />,
+    'Next.js': <ReactHuddleOverview sectionId="steps" />,
+    // 'HTML': <HTMLHuddleOverview sectionId="steps" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<HuddleSteps />

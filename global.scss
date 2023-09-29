@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  max-height: 100vh;
+  max-width: 100vw;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+}
+
+code span {
+  color: var(--primary-color) !important;
+}
+
+html {
+  .velt-logo {
+    height: 36px;
+  }
+
+  .velt-logo.velt-logo-header {
+    height: 44px;
+  }
+
+  .velt-logo.light {
+    display: block;
+  }
+
+  .velt-logo.dark {
+    display: none;
+  }
+
+  &[dark] {
+    .velt-logo.light {
+      display: none;
+    }
+
+    .velt-logo.dark {
+      display: block;
+    }
+  }
+}
+
+:root {
+  background-color: var(--bg-color);
+}
+
+* {
+  letter-spacing: 0 !important;
+}
+
+::selection {
+  color: #1A1F36;
+}
+
+// Ace editor
+
+.ace-tomorrow-night-blue {
+  background-color: #212D63;
+}
+
+.aceSelectedWord {
+  background-color: #273c76;
+  position: absolute;
+}
+
+.ace_cursor {
+  opacity: 0 !important;
+}
+
+.ace_gutter-active-line {
+  background-color: transparent !important;
+}
+
+.ace_editor {
+  border-radius: 1rem;
+}
+
+.ace_text-layer {
+  font-family: 'Fira Code' !important;
+}
+
+// Markdown styling
+
+h1, h2, h3, h4, h5 {
+  color: var(--headline-color);
+}
+
+h1, h2 {
+  margin: 1rem 0;
+}
+
+// Table styling
+
+table {
+
+  border-collapse: collapse;
+  border-radius: 0.5rem;
+  margin: 25px 0;
+  font-size: 14px;
+  min-width: 400px;
+  width: 100%;
+  // box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  thead {
+
+    color: var(--headline-color);
+
+    tr {
+      // background-color: #009879;
+      // color: #ffffff;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+  }
+
+  th,
+  td {
+    padding: 12px 15px;
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid var(--border-color);
+      color: var(--primary-color);
+    }
+
+    // tr:nth-of-type(even) {
+    //   background-color: #f3f3f3;
+    // }
+
+    tr:last-of-type {
+      // border-bottom: 2px solid #009879;
+    }
+  }
+
+}
+
+@media screen and (max-width: 992px) {
+  table {
+    font-size: 2.25vmin;
+  }
+}
+
+// NextUI overrides
+
+details {
+  background-color: transparent;
+}
+
+code {
+  margin-top: 1rem;
+  background-color: var(--code-highlight-color);
+  color: var(--code-font-color);
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 13px;
+}

@@ -1,0 +1,38 @@
+.noTopBorder {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
+.previewContainer {
+  background-color: #212D63;
+  padding: 1rem;
+  color: #A4CDFE;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom: 1px solid #4F566B;
+
+  .previewToggle {
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .previewContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+}
+
+.aceEditor {
+  font-size: 13px !important;
+}
+
+@media screen and (max-width: 992px) {
+  .aceEditor {
+    font-size: 1.7vmin !important;
+  }
+}

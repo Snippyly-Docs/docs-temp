@@ -1,0 +1,40 @@
+
+import Subheading from '../../components/Subheading/Subheading.tsx';
+import LiveSelectionDemo from '../../components/LiveSelectionDemo/LiveSelectionDemo.tsx';
+import ReactPresenceOverview from '../../code_sections/presence/ReactPresenceOverview.tsx';
+import HTMLPresenceOverview from '../../code_sections/presence/HTMLPresenceOverview.tsx';
+import ReactPresenceCustomBehavior from '../../code_sections/presence/ReactPresenceCustomBehavior.tsx';
+import HTMLPresenceCustom from '../../code_sections/presence/HTMLPresenceCustom.tsx';
+import PresenceParts from '../../code_sections/presence/PresenceParts.tsx';
+import PresenceVariables from '../../code_sections/presence/PresenceVariables.tsx';
+import ReactPresenceData from '../../code_sections/presence/ReactPresenceData.tsx';
+import HTMLPresenceData from '../../code_sections/presence/HTMLPresenceData.tsx';
+import LiveSelectionOverview from '../../code_sections/live_selection/react/LiveSelectionOverview.tsx';
+import StepTabs from '../../components/StepTabs/StepTabs.tsx';
+import { NextSeo } from 'next-seo';
+
+# Live Selection [#live-selection]
+
+<NextSeo 
+  title="Velt Docs - Live Selection"
+  description="Live Selection documentation page for the Velt SDK"
+/>
+<Subheading>Your users can see what part of the document others are interacting with in real-time.</Subheading>
+<LiveSelectionDemo />
+
+# Steps [#steps]
+
+export function LiveSelectionSteps() {
+
+  const frontendOptions = {
+    'React': <LiveSelectionOverview sectionId="steps" />,
+    'Next.js': <LiveSelectionOverview sectionId="steps" />,
+    // 'HTML': <HTMLPresenceOverview sectionId="steps" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<LiveSelectionSteps />

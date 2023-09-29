@@ -1,0 +1,22 @@
+{
+  "presence": {
+    "title": "Presence",
+    "firstHeader": "Overview"
+  },
+  "cursors": {
+    "title": "Cursors",
+    "firstHeader": "Overview"
+  },
+  "flock_mode": {
+    "title": "Flock Mode",
+    "firstHeader": "Overview"
+  },
+  "huddle": {
+    "title": "Huddle",
+    "firstHeader": "Overview"
+  },
+  "live_selection": {
+    "title": "Live Selection",
+    "firstHeader": "Overview"
+  }
+}

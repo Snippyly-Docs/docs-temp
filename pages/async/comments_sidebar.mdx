@@ -1,0 +1,99 @@
+import Subheading from '../../components/Subheading/Subheading.tsx';
+import StepTabs from '../../components/StepTabs/StepTabs.tsx';
+import HTMLSidebarOverview from '../../code_sections/comments_sidebar/HTMLSidebarOverview.tsx';
+import ReactSidebarOverview from '../../code_sections/comments_sidebar/ReactSidebarOverview.tsx';
+import ReactSidebarCustom from '../../code_sections/comments_sidebar/ReactSidebarCustom.tsx';
+import HTMLSidebarCustom from '../../code_sections/comments_sidebar/HTMLSidebarCustom.tsx';
+import HTMLSidebarButton from '../../code_sections/comments_sidebar/slots/HTMLSidebarButton.tsx';
+import ReactSidebarButton from '../../code_sections/comments_sidebar/slots/ReactSidebarButton.tsx';
+import HTMLSidebarEmbed from '../../code_sections/comments_sidebar/HTMLSidebarEmbed.tsx';
+import ReactSidebarEmbed from '../../code_sections/comments_sidebar/ReactSidebarEmbed.tsx';
+import CommentsDemo from '../../components/CommentsDemo/CommentsDemo.tsx';
+
+import { NextSeo } from 'next-seo';
+
+# Comments Sidebar [#comments-sidebar]
+
+<NextSeo 
+  title="Velt Docs - Comments Sidebar"
+  description="Comments sidebar documentation page for the Velt SDK"
+/>
+
+<Subheading>Provide a toggleable sidebar to view and filter comments.</Subheading>
+<CommentsDemo demoUrl="comments-sidebar" />
+
+# Steps [#steps]
+
+export function SidebarOverviewSteps() {
+
+  const frontendOptions = {
+    'React': <ReactSidebarOverview sectionId="steps" />,
+    'Next.js': <ReactSidebarOverview sectionId="steps" />,
+    // 'HTML': <HTMLSidebarOverview sectionId="steps" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<SidebarOverviewSteps />
+
+# Customize Behavior [#customize-behavior]
+
+export function SidebarCustomSteps() {
+
+  const frontendOptions = {
+    'React': <ReactSidebarCustom sectionId="customize-behavior" />,
+    'Next.js': <ReactSidebarCustom sectionId="customize-behavior" />,
+    'HTML': <HTMLSidebarCustom sectionId="customize-behavior" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<SidebarCustomSteps />
+
+| Field | Type | Description |
+| --- | --- | --- |
+| documentId | string | The document ID where the comment was added |
+| location | string | The location where the comment was added |
+| targetElementId | string | The DOM ID of the target element on which the comment was added |
+| context | Object \| undefined | Any context data passed when the comment was added |
+
+# Customize UI [#customize-ui]
+
+## 1. Embed Mode
+
+export function SidebarEmbedSteps() {
+
+  const frontendOptions = {
+    'React': <ReactSidebarEmbed sectionId="customize-ui" />,
+    'Next.js': <ReactSidebarEmbed sectionId="customize-ui" />,
+    'HTML': <HTMLSidebarEmbed sectionId="customize-ui" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<SidebarEmbedSteps />
+
+## 2. Slots [#customize-slots]
+
+export function SidebarSlotsSteps() {
+  const frontendOptions = {
+    'React': <ReactSidebarButton sectionId="customize-slots" />,
+    'Next.js': <ReactSidebarButton sectionId="customize-slots" />,
+    'HTML': <HTMLSidebarButton sectionId="customize-slots" />
+  };
+
+  return (
+    <StepTabs frontendOptions={frontendOptions} />
+  );
+}
+
+<SidebarSlotsSteps />

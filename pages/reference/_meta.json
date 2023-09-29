@@ -1,0 +1,50 @@
+{
+  "client": {
+    "title": "Velt Client"
+  },
+  "general": {
+    "title": "General"
+  },
+  "presence": {
+    "title": "Presence"
+  },
+  "cursors": {
+    "title": "Cursors"
+  },
+  "flock": {
+    "title": "Flock"
+  },
+  "comments": {
+    "title": "Comments"
+  },
+  "comments_sidebar": {
+    "title": "Comments Sidebar"
+  },
+  "system_comments": {
+    "title": "System Comments"
+  },
+  "notifications": {
+    "title": "Notifications"
+  },
+  "arrows": {
+    "title": "Arrows"
+  },
+  "area": {
+    "title": "Area"
+  },
+  "recorder": {
+    "title": "Recorder"
+  },
+  "huddle": {
+    "title": "Huddle"
+  },
+  "rewriter": {
+    "title": "Rewriter"
+  },
+  "selection": {
+    "title": "Live Selection"
+  },
+  "tag": {
+    "title": "Tag"
+  }
+}

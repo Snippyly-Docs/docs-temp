@@ -1,0 +1,132 @@
+import { Callout } from 'nextra-theme-docs';
+
+# Tags
+
+_Some description for tags._
+
+---
+
+## 1: Add the component
+
+```html copy
+<snippyly-tags></snippyly-tags>
+```
+
+<Callout type="warning">
+  The `snippyly-tags` component needs to be in the root App component of your React app
+</Callout>
+
+## 2: Add the tag tool
+
+```html copy
+<snippyly-tag-tool></snippyly-tag-tool>
+```
+
+This will create a button for your end-users to add tags. You can add this code anywhere into your app.
+
+When your users click on this button, their mouse cursor will change to a tag pin and it will start detecting & highlighting the borders of the underlying elements. Then, clicking on the highlighted element will attach a tag.
+
+## 3: Customization
+
+### Style the tag tool
+
+Simply add a CSS class to the component to give it a style.
+
+**Example**
+
+```html copy
+<snippyly-tag-tool class="my-custom-css"></snippyly-tag-tool>
+```
+
+```css copy
+snippyly-tag-tool.my-custom-css {
+  /* Custom CSS */
+}
+```
+
+### Add a custom trigger button
+
+You can provide a custom button to add tags using a slot.
+
+**Example**
+
+```html copy
+<snippyly-tag-tool>
+  <button>Assign</button>
+</snippyly-tag-tool>
+```
+
+### Style the tag highlighter
+
+A purple border is added to the target DOM element when:
+
+- you hover on the DOM element with the tag trigger activated
+- you hover on the tag pin
+- you select the tag pin
+
+You can style the highlighter by passing your own CSS class name to the `pin-highlighter-class` attribute of the `<snippyly-tags>` element.
+
+**Example**
+
+```html copy
+<snippyly-tags pin-highlighter-class="custom-pin-highlighter-class"></snippyly-tags>
+```
+
+```css copy
+.custom-pin-highlighter-class {
+  outline: 2px solid black !important;
+}
+```
+
+### Restrict tags to specific DOM elements
+
+By default, your end-users can add a tag to any DOM element. 
+
+You can restrict tags to specific DOM elements & their children by providing a list of element ids. For all other DOM elements, tags will be disabled - the DOM highlighter will be turned off and no tags can be attached.
+
+**Example**
+
+```js copy
+const tagElement = client.getTagElement();
+tagElement.allowedElementIds(['elementId1', 'elementId2']);
+```
+
+<Callout type="warning">Note if you pass an empty array, your end-users will be able to tag any DOM element.</Callout>
+
+### Disable tags on specific DOM elements
+
+With the above method you can specify where tags could be added, with this feature you can do the inverse. You can specify the DOM elements and its children where tags should be disabled.
+
+You can do so by adding **`data-snippyly-tag-disabled`** attribute to any DOM element.
+
+<Callout type="info">You can manually add data attributes or add them programmatically during runtime.</Callout>
+
+### Enable tags on pre-defined elements only
+
+By default, clicking on `<snippyly-tag-tool>` trigger allows users to attach a tag to any element in a freestyle way. If you want to associate `<snippyly-tag-tool>` with pre-defined elements on the DOM only, then use either of these two methods:
+
+**a. Using `<snippyly-tag-tool>` trigger**  
+Pass target element's ID in `target-tag-element-id` attribute.  
+Note you can add as many `<snippyly-tag-tool>` triggers as you like and associate each trigger with a unique DOM element ID.
+
+**Example**
+
+```html copy
+<snippyly-tag-tool target-tag-element-id="TARGET_ELEMENT_ID">
+  <!-- Your custom UI here -->
+</snippyly-tag-tool>
+```
+
+**b. Using `attachTag()` method**  
+Pass target element's ID in `attachTag()` method.  
+An example on how you can use this: Show a button on hover on any DOM element. On click, call this method and pass that DOM element's ID. The tag will then be attached to the element.
+
+**Example**
+
+```js copy
+const tagElement = client.getTagElement();
+tagElement.attachTag(TARGET_ELEMENT_ID);
+```
+
+
+

@@ -1,0 +1,75 @@
+import CodeSampleWrapper from '../../components/CodeSampleWrapper/CodeSampleWrapper.tsx';
+
+##### The `CursorElement` class contains the following fields:
+
+## 1. getLiveCursorsOnCurrentDocument()
+
+This method is used to subscribe to a list of all active cursors on the current document. This method is deprecated, use `getOnlineUsersOnCurrentDocument` instead.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public getLiveCursorsOnCurrentDocument(): Observable<CursorUser[] | null>;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+`Observable<CursorUser[] | null>`
+
+## 2. getOnlineUsersOnCurrentDocument()
+
+This method is used to subscribe to a list of all online users on the current document.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public getOnlineUsersOnCurrentDocument(): Observable<CursorUser[] | null>;
+`} />
+
+**Params**
+
+None
+
+**Returns**
+
+`Observable<CursorUser[] | null>`
+
+## 3. setInactivityTime()
+
+This method is used to set the inactivity time. By default, the value is 2 minutes.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public setInactivityTime(time: number): void;
+`} />
+
+**Params**
+
+time: number - inactivity time in milliseconds
+
+**Returns**
+
+void
+
+## 4. allowedElementIds()
+
+This method is used to allow cursors in specific elements only.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+public allowedElementIds(elementIds: string[]): any;
+`} />
+
+**Params**
+
+elementIds: string[] - The IDs of the elements to be allowed to show cursor on them
+
+**Returns**
+
+`any`

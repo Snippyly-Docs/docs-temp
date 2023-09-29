@@ -1,0 +1,438 @@
+import CodeSampleWrapper from '../../components/CodeSampleWrapper/CodeSampleWrapper.tsx';
+
+##### The `VeltClient` class contains the following fields:
+
+## 1. init()
+
+Initialize the Velt client. Call only once.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare async function init(apiKey: string, config: Config): Promise<Velt>;
+`} />
+
+**Params**
+
+`apiKey: string` -  Your API key to make authenticated calls to Velt Servers and track SDK usage.
+
+`config?: Config` 
+
+**Returns**
+
+`Promise<Velt>`
+
+## identify()
+
+Tell us who the currently logged in user is. Call whenever the user signs in or signs up.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function identify(user: User): User;
+`} />
+
+**Params**
+
+`user: User`
+
+**Returns**
+
+`User`
+
+## updateUser()
+
+Update the attributes for the currently logged in user. Use this whenever the user is updated (eg: upgrades, or has updated contact list etc.) but ensure that the userId is the same.  
+If you pass a different `userId` here than the one you provided in the `init()` method, we will reinitialize the SDK with the new user.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function updateUser(user: User): void;
+`} />
+
+**Params**
+
+`user: User`
+
+**Returns**
+
+`void`
+
+## setDocumentId()
+
+Tell us the unique ID of the current document on which you want to enable collaboration.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function setDocumentId(documentId: string): void;
+`} />
+
+**Params**
+
+`documentId: string`
+
+**Returns**
+
+`void`
+
+## setLocation()
+
+Use this to tell us the more specific location the user is in your app. This represents a location inside the main `document` that you set initially using `setDocumentId()` . This could represent your app's pages, sections, versions, frames (in video editor), data points on maps/charts etc. 
+
+You can pass a custom key value paired object to set the location. This means that this object can represent one or all of these dimensions at once: pages, sections, versions, frames (in video editor), data points on maps/charts etc. Example:
+
+<CodeSampleWrapper mode="jsx" code={`
+{
+  'page': 'mainPage',
+  'version': 'v1.2',
+  'videoFrame': '120'
+  // You can keep adding more field to make the location very specific.
+  // The field names can be anything.
+}
+`} />
+
+A `location` is always under a `document` in hierarchy. Once you set this, all Velt features will now be attributed to this specific `location` under the `document`. In a way all Velt data will be stored in a hierarcy like this: `document`/`location`. 
+
+If you want to show two users each others' `cursors` or `comments` then you need to set the same `documentId` **AND** `location` for them.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function setLocation(location: Location): void;
+`} />
+
+**Params**
+
+`location: Location`
+
+**Returns**
+
+`void`
+
+## addLocation()
+
+Provide the custom params of the current document/resource to identify sub document inside a document.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function addLocation(params: Location): void;
+`} />
+
+**Params**
+
+`params: Location`
+
+**Returns**
+
+`void`
+
+## removeLocation()
+
+Removes the specific location. Now all Velt features will attributed at `documentId` level.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function removeLocation(): void;
+`} />
+
+**Params**
+
+`none`
+
+**Returns**
+
+`void`
+
+## setScrollableElementsIds()
+
+Tell us the about the scrollable document ids to keep track on its scroll changes
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function setScrollableElementsIds(scrollableElementsIds: string[]): void;
+`} />
+
+**Params**
+
+`scrollableElementsIds: string[]`
+
+**Returns**
+
+`void`
+
+## removeScrollableElementsIds()
+
+To remove scrollable elements ids
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function removeScrollableElementsIds(): void;
+`} />
+
+**Params**
+
+`none`
+
+**Returns**
+
+`void`
+
+## getPresenceElement()
+
+Get the `PresenceElement` object to access the raw live presence data.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function getPresenceElement(): PresenceElement;
+`} />
+
+**Params**
+
+`none`
+
+**Returns**
+
+`PresenceElement`
+
+## getCursorElement()
+
+Get the `CursorElement` Object to access the raw live cursor data. You can use this to subscribe to a realtime list of all live users with their cursor positions associated with the given document.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function getCursorElement(): CursorElement;
+`} />
+
+**Params**
+
+`none`
+
+**Returns**
+
+`CursorElement`
+
+## getCommentElement()
+
+Get the `CommentElement` Object to access the raw comments data, including all historical comments associated with the given document.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function getCommentElement(): CommentElement;
+`} />
+
+**Params**
+
+`none`
+
+**Returns**
+
+`CommentElement`
+
+## getTagElement()
+
+Get the Tag Pin Annotation Object to access the raw tag data.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function getTagElement(): TagElement;
+`} />
+
+**Params**
+
+`none`
+
+**Returns**
+
+`TagElement`
+
+## getSelectionElement()
+
+Get the Selection Object to enable/disable the feature.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function getSelectionElement(): SelectionElement;
+`} />
+
+**Params**
+
+`none`
+
+**Returns**
+
+`SelectionElement`
+
+## getRecorderElement()
+
+Get the Recorder element.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function getRecorderElement(): RecorderElement;
+`} />
+
+**Params**
+
+`none`
+
+**Returns**
+
+`RecorderElement`
+
+## getContactElement()
+
+Get the Contact element.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function getContactElement(): ContactElement;
+`} />
+
+**Params**
+
+`none`
+
+**Returns**
+
+`ContactElement`
+
+## getRewriterElement()
+
+Get the Rewriter element.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function getRewriterElement(): RewriterElement;
+`} />
+
+**Params**
+
+`none`
+
+**Returns**
+
+`RewriterElement`
+
+## getHuddleElement()
+
+Get the Huddle element.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function getHuddleElement(): HuddleElement;
+`} />
+
+**Params**
+
+`none`
+
+**Returns**
+
+`HuddleElement`
+
+## disableFeatures()
+
+Provide a list of features to disable.
+Provide an empty array to enable all the features.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function disableFeatures(features: string[]): void;
+`} />
+
+**Params**
+
+`features: string[]`
+
+**Returns**
+
+`void`
+
+## setUserRoles()
+
+To set the user roles which will be shown in invite users modal.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function setUserRoles(userRoles: UserRole[]): void;
+`} />
+
+**Params**
+
+`userRoles: UserRole[]`
+
+**Returns**
+
+`void`
+
+## setDarkMode()
+
+To set the dark mode of Velt components.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function setDarkMode(isDarkMode: boolean): void;
+`} />
+
+**Params**
+
+`isDarkMode: boolean`
+
+**Returns**
+
+`void`
+
+## inviteUsers()
+
+To invite users to the document.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function inviteUsers(users: DocumentUser[]): void;
+`} />
+
+**Params**
+
+`users: DocumentUser[]`
+
+**Returns**
+
+`void`
+
+## removeVeltContent()
+
+To remove the velt content from the html content.
+
+**Signature**
+
+<CodeSampleWrapper mode="jsx" code={`
+export declare function removeVeltContent(htmlContent: string): string;
+`} />
+
+**Params**
+
+`htmlContent: string`
+
+**Returns**
+
+`string`
+

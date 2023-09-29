@@ -1,0 +1,177 @@
+import { Callout } from 'nextra-theme-docs';
+import { Comment } from '@snippyly/snippyly-demo-component'
+import { documentID } from '../../../../components/documentID'
+export const commentDocumentId = documentID("comment");
+
+# Comment sidebar
+
+_Some description about the comment sidebar._
+
+---
+
+<Comment sidebar style="margin-top: 2.5rem" user={"Rachel"} documentId={commentDocumentId} height={500}/>
+
+## When to use
+
+The comment sidebar allows you to perform administrative tasks, view all comment dialogs, and much more!
+
+## How to use
+
+### 1. Add the comment sidebar
+
+Import the component:
+
+```jsx copy
+import { SnippylyCommentsSidebar } from '@veltdev/react';
+```
+
+Then insert the sidebar in the root of your React application:
+
+**Example**
+
+```tsx copy {6}
+import { SnippylyProvider, SnippylyComments } from "@veltdev/react";
+
+function App() {
+  return (
+    <SnippylyProvider apiKey='...'>
+        <SnippylyCommentsSidebar />
+    </SnippylyProvider>
+  )
+}
+```
+
+<Callout type="warning">
+  The `SnippylyCommentsSidebar` component _**must**_ be in the root App component of your React app
+</Callout>
+
+**Note:**
+
+- If `<SnippylyCommentsSidebar>` is added to the DOM, all comment dialogs will show a **'Open all comments'** button. This button will open the comments sidebar.
+- Clicking on a comment in the sidebar will take you to exact spot where the comment is added.
+- You can update/delete a comment from the sidebar as well.
+- When the sidebar is in `open` state, the floating comment dialogs will be hidden from the DOM.
+- The sidebar comes with 4 filter options:
+  - `Page`: Where the comment was added in the document. It can be set by using the `location` feature.
+  - `Status`: Current status of the comment.
+  - `People`: Who created the comment and who it is assigned to.
+  - `Version`: Which version of the document the comment was added to. This is hidden by default. It only shows up when there is atleast one comment on a `version` location. It can be set by using the `location` feature.
+
+### 2. Set the `Page` filter
+
+For us to accurately generate the `Page` filter, we need inputs from you.
+
+The `Page` filter represents the specific `location` within the `document` where the comments were added.  Every app will have their own way of defining these. So, here is how you can provide us the inputs to generate this filter:
+
+**a. Setting filter options label**
+
+This will be shown in the filter dropdown.
+
+- **If you set `location`:**  In the your `location` object, you can set a special field **`locationName`** and pass any string to it. We will use that to set the label.  If you don't set this field then we will use the current URL `/path` as label.  
+  To learn more about using `location`, check [this](doc:set-location) out.
+
+- **If you don't set `location`:** This means that you are setting all comments under `documentId` and not under any specific `location` under the `documentId`.  In this case, we will automatically generate `All` label and group all comments under that.
+
+**b. Setting filter options value**
+
+This will be used to filter the comments in the sidebar.
+
+The way you can set this is by using `location`. The key use case for this filter is to segment comments by different pages/sections in your app where the comment was added. The way you tell Velt about these pages or sections in your app is by setting `location`. Once you set `location`, we automatically use that as values behind the scenes to filter based comments based on that.
+
+### 3. Set the `Version` filter
+
+The `Version` filter represents the specific version of the `document` where the comments were added. You can tell us about different versions by setting the `location` object. In the `location` object use the key as `version` and value as anything that represents the version in your app.  Every app will have their own way of defining these. So, here is how you can provide us the inputs to generate this filter:
+
+**a. Setting filter options label**
+
+This will be shown in the filter dropdown. The value that you set in the `version`  key of the `location` object will be used as the option label. To learn more about using `location`, check out [this](doc:set-location).
+
+**b. Setting filter options value**
+
+This will be used to filter the comments in the sidebar. The value that you set in the `version`  key of the `location` object will be used as the option value as well.
+
+## Customization
+
+### Enable embed mode for sidebar
+
+Using embed mode, you can embed the sidebar in your own container and the sidebar will take up the width and height of your container.
+
+To enable embed mode, pass `embed-mode="true"` attribute in `<SnippylyCommentsSidebar>` tag.
+
+**Example**
+
+```html copy
+<SnippylyCommentsSidebar embed-mode="true"></SnippylyCommentsSidebar>
+```
+
+When embed mode is enabled, clicking on `Open All Comments` button in comment dialog will not open the sidebar. We will instead emit an `openSidebar` event that you can listen to and open the sidebar yourself.
+
+This is how you can listen to that event:
+
+**Example**
+
+```js copy
+const commentElement = document.querySelector('SnippylyComments');
+commentElement.addEventListener('openSidebar', (s) => {
+  // Show the sidebar in custom container
+});
+```
+
+### Enable URL based navigation in sidebar
+
+After you enable this mode, if you click on any comment in the sidebar, we will navigate you to the URL where the comment was added, scroll to the comment and open it. You should use this only if you maintain unique id based URLs for your app pages/sections where comments can be added.
+
+By default this is turned off and we emit `onSidebarCommentClick` event instead. [Learn more]().
+
+To enable it pass `enable-url-navigation="true"` attribute in `<SnippylyCommentsSidebar>` tag.
+
+**Example**
+
+```html copy
+<SnippylyCommentsSidebar enable-url-navigation="true"></SnippylyCommentsSidebar>
+```
+
+### Open, close, or toggle the sidebar programmatically
+
+Note this will not work if you turn on `embed-mode`. Use the following to programmatically control the sidebar:
+
+**a. Open comments sidebar**
+
+```ts copy
+const commentElement = client.getCommentElement();
+commentElement.openCommentSidebar();
+```
+
+**b. Close comments sidebar**
+
+```ts copy
+const commentElement = client.getCommentElement();
+commentElement.closeCommentSidebar();
+```
+
+**c. Toggle comments sidebar**
+
+```ts copy
+const commentElement = client.getCommentElement();
+commentElement.toggleCommentSidebar();
+```
+
+### Navigate to comment location when comment is clicked on the sidebar
+
+By default clicking on a comment in the sidebar, will emit `onSidebarCommentClick` event with `documentId` and `location` data so you can use this information to update the state of your app and redirect user to the location where that comment annotation was added. 
+
+If you maintain unique id based URLs for your app pages where comments can be added, then you could turn on the `enable-url-navigation` feature so that we can handle the navigation automatically for you.
+
+<Callout type="info">
+  **Note:** The event data will be available inside the **`detail`** field of the `event` object.
+</Callout>
+
+**Example**
+
+```javascript copy
+const commentElement = document.querySelector('SnippylyComments');
+commentElement.addEventListener('onSidebarCommentClick', (event) => {
+  // Get document id and location data inside event.detail field.
+  console.log('onSidebarCommentClick', event.detail);
+});
+```
